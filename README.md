@@ -4,19 +4,18 @@ This is still a work in progress. Keep repo private until below items are comple
 
 required
 
-[*] - index/miners page
-[*] - pool & network stats drawer
-[*] - pool blocks page (mature, immature, pending)
-[*] - help page (nanominer, lolminer)
-[ ] - payments page
-[ ] - accounts page
-[ ] - use moments instead of Intl (fix some time since issues)
-[ ] - add examples for additional etchash supported miners
+- [x] index/miners page
+- [x] pool & network stats drawer
+- [x] pool blocks page (mature, immature, pending)
+- [x] help page (nanominer, lolminer)
+- [ ] payments page
+- [ ] accounts page
+- [ ] use moments instead of Intl (fix some time since issues)
+- [ ] add examples for additional etchash supported miners
 
 additional
 
-[ ] - DAG calculator
-
+- [ ] DAG calculator
 
 ## Rationale
 
