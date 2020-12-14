@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "consola": "^2.15.0",
-    "core-js": "^3.6.5",
+    "core-js": "^3.8.1",
     "date-fns": "^2.16.1",
     "nuxt": "^2.14.6"
   },
