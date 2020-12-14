@@ -63,31 +63,22 @@
       <v-list dense class="ma-0 pa-0">
         <v-subheader>POOL</v-subheader>
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
-            <v-icon>mdi-pickaxe</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Miners Online</v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action-text>{{ stats.minersOnline }}</v-list-item-action-text>
-        </v-list-item>
-        <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
             <v-icon>mdi-gauge</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Pool Hashrate</v-list-item-title>
+            <v-list-item-subtitle>{{ formatHashrate(stats.poolHashRate, true) }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action-text>{{ formatHashrate(stats.poolHashRate, true) }}</v-list-item-action-text>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
             <v-icon>mdi-clock-outline</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Last Block Found</v-list-item-title>
+            <v-list-item-subtitle>{{ lastBlockFound }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action-text>{{ lastBlockFound }}</v-list-item-action-text>
         </v-list-item>
         <!--<v-list-item class="stats-item ma-1">
           <v-list-item-icon>
@@ -99,44 +90,52 @@
           <v-list-item-action-text>{{ stats.roundVariance }}</v-list-item-action-text>
         </v-list-item>-->
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
+            <v-icon>mdi-pickaxe</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Miners Online</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action-text>{{ stats.minersOnline }}</v-list-item-action-text>
+        </v-list-item>
+        <v-list-item class="stats-item ma-1">
+          <v-list-item-avatar>
             <v-icon>mdi-cash</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Pool Fee</v-list-item-title>
           </v-list-item-content>
           <v-list-item-action-text>{{ stats.poolFee }}%</v-list-item-action-text>
         </v-list-item>
-
       </v-list>
       <v-list dense class="ma-0 pa-0">
         <v-subheader text-right>NETWORK</v-subheader>
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
             <v-icon>mdi-cube-scan</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Height</v-list-item-title>
+            <v-list-item-title>Block Height</v-list-item-title>
+            <v-list-item-subtitle>{{ nf.format(stats.height) }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action-text>{{ nf.format(stats.height) }}</v-list-item-action-text>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
             <v-icon>mdi-lock</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Difficulty</v-list-item-title>
+            <v-list-item-title>Network Difficulty</v-list-item-title>
+            <v-list-item-subtitle>{{ formatHashrate(stats.difficulty, false) }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action-text>{{ formatHashrate(stats.difficulty, false) }}</v-list-item-action-text>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
+          <v-list-item-avatar>
             <v-icon>mdi-gauge</v-icon>
-          </v-list-item-icon>
+          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Hashrate</v-list-item-title>
+            <v-list-item-title>Network Hashrate</v-list-item-title>
+            <v-list-item-subtitle>{{ formatHashrate(stats.networkHashrate, true) }}</v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action-text>{{ formatHashrate(stats.networkHashrate, true) }}</v-list-item-action-text>
         </v-list-item>
       </v-list>
       <template v-slot:append>
@@ -167,6 +166,8 @@
 </template>
 
 <script>
+import { formatDistanceToNow } from 'date-fns'
+
 export default {
   data () {
     return {
@@ -174,6 +175,7 @@ export default {
       drawer: true,
       drawerRight: true,
       fixed: true,
+      now: 0,
       items: [
         {
           icon: 'mdi-home',
@@ -198,12 +200,6 @@ export default {
       ],
       miniVariant: true,
       title: 'open-etc-pool',
-      rtf: new Intl.RelativeTimeFormat("en", {
-        localeMatcher: "lookup", // other values: "lookup"
-        numeric: "always", // other values: "auto"
-        style: "short", // other values: "short" or "narrow"
-
-      }),
       nf: new Intl.NumberFormat("en", {}),
       timer: {
         stats: null,
@@ -213,7 +209,7 @@ export default {
         stats: 2000,
         miners: 10000,
         blocks: 10000
-      }
+      },
     }
   },
   computed: {
@@ -221,7 +217,7 @@ export default {
       return this.$store.state
     },
     lastBlockFound() {
-      return this.rtf.format((((this.stats.lastBlockFound*1000) - Date.now())/1000).toFixed(1), 'seconds')
+      return formatDistanceToNow(new Date(this.stats.lastBlockFound * 1000), { addSuffix: true, includeSeconds: true })
     }
   },
   methods: {
@@ -257,6 +253,10 @@ export default {
     this.startSync('stats')
     this.startSync('miners')
     this.startSync('blocks')
+    const t = this
+    setInterval(function() {
+      t.now = Date.now()
+    }, 1000)
   }
 }
 </script>
