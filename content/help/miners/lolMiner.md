@@ -13,7 +13,7 @@ In order to mine etchash you need [lolMiner](https://github.com/Lolliedieb/lolMi
 ## Begin of user-editable part ##
 #################################
 
-POOL={{ config.StratumHost }}:{{ config:StratumPort }}
+POOL=STRATUM_HOST
 # Address to send funds to. Change this address to yours!
 WALLET=0xda904bc07fd95e39661941b3f6daded1b8a38c71
 

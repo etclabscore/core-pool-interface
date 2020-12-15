@@ -13,5 +13,5 @@ wallet = 0xda904bc07fd95e39661941b3f6daded1b8a38c71
 ; Coin to mine.
 coin = ETC
 
-pool1={{config.StratumHost}}:{{config.StratumPort}}
+pool1=STRATUM_HOST
 ```
