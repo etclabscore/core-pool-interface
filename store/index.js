@@ -14,8 +14,8 @@ export const state = () => ({
     difficulty: 0,
     networkHashrate: 0,
     miners: {},
-    blocks: {}
-
+    blocks: {},
+    now: Date.now() // global now Date for time since calcs
 })
 
 export const mutations = {
@@ -34,6 +34,9 @@ export const mutations = {
     },
     SET_BLOCKS(state, blocks) {
         state.blocks = blocks
+    },
+    SET_NOW(state, now) {
+        state.now = now
     }
 }
 
@@ -75,5 +78,8 @@ export const actions = {
         } catch (error) {
             consola.error(new Error(error))
         }
+    },
+    now({commit}) {
+      commit('SET_NOW', Date.now())
     } 
 }

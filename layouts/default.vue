@@ -77,7 +77,7 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Last Block Found</v-list-item-title>
-            <v-list-item-subtitle>{{ lastBlockFound }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ formatTimeSince(this.stats.lastBlockFound) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <!--<v-list-item class="stats-item ma-1">
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistance } from 'date-fns'
 
 export default {
   data () {
@@ -175,7 +175,6 @@ export default {
       drawer: true,
       drawerRight: true,
       fixed: true,
-      now: 0,
       items: [
         {
           icon: 'mdi-home',
@@ -216,8 +215,8 @@ export default {
     stats() {
       return this.$store.state
     },
-    lastBlockFound() {
-      return formatDistanceToNow(new Date(this.stats.lastBlockFound * 1000), { addSuffix: true, includeSeconds: true })
+    now() {
+      return this.$store.state.now
     }
   },
   methods: {
@@ -247,7 +246,10 @@ export default {
     stopSync(store) {
       clearInterval(this.timer[store])
       this.timer[store] = null
-    }
+    },
+    formatTimeSince(time) {
+      return formatDistance(new Date(time*1000), this.now, { addSuffix: true, includeSeconds: true })
+    },
   },
   created() {
     this.startSync('stats')
@@ -255,7 +257,7 @@ export default {
     this.startSync('blocks')
     const t = this
     setInterval(function() {
-      t.now = Date.now()
+      t.$store.dispatch('now')
     }, 1000)
   }
 }
