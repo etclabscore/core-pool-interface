@@ -1,10 +1,8 @@
 ---
 title: lolMiner
+minVer: 1.12
+releases: https://github.com/Lolliedieb/lolMiner-releases/releases
 ---
-
-In order to mine etchash you need [lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) 1.12 or greater.
-
-### Example mine_etc.sh (mainnet)
 
 ```
 #!/bin/bash

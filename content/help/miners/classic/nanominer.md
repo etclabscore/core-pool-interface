@@ -1,12 +1,10 @@
 ---
 title: nanominer
+minVer: 1.12.0
+releases: https://github.com/nanopool/nanominer/releases
 ---
 
-In order to mine etchash you need [nanominer](https://github.com/nanopool/nanominer/releases) 1.12.0 or greater.
-
-### Example config (mainnet)
-
-```bash
+```
 ; Address to send funds to. Change this address to yours!
 wallet = 0xda904bc07fd95e39661941b3f6daded1b8a38c71
 

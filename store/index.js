@@ -1,43 +1,49 @@
 import axios from 'axios'
 import consola from 'consola'
 
+const URL = "http://127.0.0.1:8080"
 const API_URL = "http://127.0.0.1:8080/api/"
 const TARGET_TIME = 13.2
 
 export const state = () => ({
-    minersOnline: 0,
-    poolHashRate: 0,
-    lastBlockFound: 0,
-    roundShares: 0,
-    poolFee: 1,
-    height: 0,
-    difficulty: 0,
-    networkHashrate: 0,
-    miners: {},
-    blocks: {},
-    now: Date.now() // global now Date for time since calcs
+  env: {
+    url: URL,
+    api: API_URL,
+    network: 'classic'
+  },
+  minersOnline: 0,
+  poolHashRate: 0,
+  lastBlockFound: 0,
+  roundShares: 0,
+  poolFee: 1,
+  height: 0,
+  difficulty: 0,
+  networkHashrate: 0,
+  miners: {},
+  blocks: {},
+  now: Date.now() // global now Date for time since calcs
 })
 
 export const mutations = {
-    SET_STATS(state, info) {
-        state.minersOnline = info.minersOnline | state.minersOnline
-        state.poolHashRate = info.poolHashRate | state.poolHashRate
-        state.lastBlockFound = info.lastBlockFound | state.lastBlockFound
-        state.roundShares = info.roundShares | state.roundShares
-        state.poolFee = info.poolFee | state.poolFee
-        state.height = info.height | state.height
-        state.difficulty = info.difficulty | state.difficulty
-        state.networkHashrate = state.difficulty / TARGET_TIME
-    },
-    SET_MINERS(state, miners) {
-        state.miners = miners
-    },
-    SET_BLOCKS(state, blocks) {
-        state.blocks = blocks
-    },
-    SET_NOW(state, now) {
-        state.now = now
-    }
+  SET_STATS(state, info) {
+    state.minersOnline = info.minersOnline | state.minersOnline
+    state.poolHashRate = info.poolHashRate | state.poolHashRate
+    state.lastBlockFound = info.lastBlockFound | state.lastBlockFound
+    state.roundShares = info.roundShares | state.roundShares
+    state.poolFee = info.poolFee | state.poolFee
+    state.height = info.height | state.height
+    state.difficulty = info.difficulty | state.difficulty
+    state.networkHashrate = state.difficulty / TARGET_TIME
+  },
+  SET_MINERS(state, miners) {
+    state.miners = miners
+  },
+  SET_BLOCKS(state, blocks) {
+    state.blocks = blocks
+  },
+  SET_NOW(state, now) {
+    state.now = now
+  }
 }
 
 export const actions = {
