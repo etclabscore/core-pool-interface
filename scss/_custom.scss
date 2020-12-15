@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap');
+
+a {
+  text-decoration: none;
+}
+
+.v-application {
+  font-family: Ubuntu Mono, monospace !important;
+  font-style: normal;
+  font-variant: normal;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: calc(100vh - 80px)
+}
+
+.bg-transparent {
+  background-color: $transparent !important;
+}
+
+.bb-1 {
+  border-bottom: 1px solid $grey3 !important;
+}
