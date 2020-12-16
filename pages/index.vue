@@ -20,6 +20,9 @@
           </v-col>
         </v-row>
       </v-card>
+      <v-alert v-if="network === 'mordor'" tile type="error" class="w-100">
+        This pool is configured for the mordor test network. The ETC rewarded is testnet ETC.
+      </v-alert>
       <v-card flat tile>
         <v-card-title>
           <v-text-field
@@ -93,6 +96,9 @@ export default {
           arr.push({account: miner, hashrate: this.formatHashrate(obj[miner].hr, true), lastBeat: this.dtf.format(new Date(obj[miner].lastBeat*1000)), offline: obj[miner.offline]})
       }
       return arr
+    },
+    network() {
+      return this.$store.state.env.network
     }
   },
   methods: {
