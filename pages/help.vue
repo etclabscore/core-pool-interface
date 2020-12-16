@@ -2,14 +2,20 @@
   <v-row justify="center" align="center">
     <v-col cols="12" sm="12" md="12">
       <v-row no-gutters class="px-4">
-        <v-alert type="info" class="w-100">
+        <v-alert tile type="info" class="w-100 mb-0">
           Change the address in the examples below to YOUR address before starting your miner.
         </v-alert>
       </v-row>
-      <v-row no-gutters>
-        <v-col cols="12" sm="12" md="12" v-for="(miner, index) in miners" :key="index" class="ma-0">
-          <v-card tile flat class="ma-0 bb-1">
-            <v-card-title class="headline">
+      <v-row no-gutters class="px-4">
+        <v-col cols="12" sm="12" md="12">
+          <v-card
+            v-for="(miner, index) in miners" :key="index"
+            tile
+            flat
+            class="my-2"
+            style="border: 1px solid #2e2e2e;" 
+          >
+            <v-card-title class="headline ma-0" style="background-color:#2e2e2e;">
               {{ miner.title }}
               <v-spacer />
               <a class="pa-0" :href="miner.releases" target="_blank">
@@ -19,7 +25,7 @@
                 </v-btn>
               </a>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="pa-0">
               <article>
                 <nuxt-content :document="miner" />
               </article>
@@ -42,11 +48,14 @@ export default {
       'lolminer',
       'nanominer',
       'trex',
-      'nbminer'
+      'nbminer',
+      'gminer',
+      'teamred',
+      'srbminer'
     ]
     const supportsMordor = [
       'lolminer',
-      'nbminer'
+      'gminer'
     ]
 
     if (network === 'mordor') {
