@@ -38,10 +38,11 @@
 </template>
 
 <script>
+import config from '~/params/config.json'
 
 export default {
   async asyncData ({ $content }) {
-    const network = 'classic' // TODO - iquidus
+    const network = config.network
     const path_prefix = 'help/miners/' + network
     let miners = []
     const supportsClassic = [
