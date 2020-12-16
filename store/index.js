@@ -1,15 +1,14 @@
 import axios from 'axios'
 import consola from 'consola'
+import config from '@/params/config.json'
 
-const URL = "http://127.0.0.1:8080"
-const API_URL = "http://127.0.0.1:8080/api/"
 const TARGET_TIME = 13.2
 
 export const state = () => ({
   env: {
-    url: URL,
-    api: API_URL,
-    network: 'classic'
+    url: config.url,
+    api: config.api,
+    network: config.network
   },
   minersOnline: 0,
   poolHashRate: 0,
