@@ -9,9 +9,9 @@ required
 - [x] pool blocks page (mature, immature, pending)
 - [x] help page (nanominer, lolminer)
 - [ ] payments page
-- [ ] accounts page
-- [ ] use moments instead of Intl (fix some time since issues)
-- [ ] add examples for additional etchash supported miners
+- [x] accounts page
+- [x] use date-fns instead of Intl for time
+- [x] add examples for additional etchash supported miners
 
 additional
 
