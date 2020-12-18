@@ -47,6 +47,12 @@
           <template v-slot:item.account="{ item }">
             <nuxt-link :to="'/account/' + item.account">{{ formatAccountHash(item.account) }}</nuxt-link>
           </template>
+          <template v-slot:item.hashrate="{ item }">
+            {{ formatHashrate(item.hashrate, true) }}
+          </template>
+          <template v-slot:item.lastBeat="{ item }">
+            {{ formatLastBeat(item.lastBeat) }}
+          </template>
         </v-data-table>
       </v-card>
     </v-col>
@@ -55,12 +61,11 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import { formatDistance, formatDistanceToNow } from 'date-fns'
 
 export default {
   components: {
     Logo,
-    VuetifyLogo
   },
   data () {
     return {
@@ -78,14 +83,6 @@ export default {
         },
       ],
       search: "",
-      dtf: new Intl.DateTimeFormat('en', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-      })
     }
   },
   computed: {
@@ -93,12 +90,15 @@ export default {
       const obj = this.$store.state.miners
       let arr = []
       for (const miner in obj) {
-          arr.push({account: miner, hashrate: this.formatHashrate(obj[miner].hr, true), lastBeat: this.dtf.format(new Date(obj[miner].lastBeat*1000)), offline: obj[miner.offline]})
+          arr.push({account: miner, hashrate: obj[miner].hr, lastBeat: obj[miner].lastBeat*1000, offline: obj[miner.offline]})
       }
       return arr
     },
     network() {
       return this.$store.state.env.network
+    },
+    now() {
+      return this.$store.state.now
     }
   },
   methods: {
@@ -121,7 +121,10 @@ export default {
       const start = account.substring(0,10)
       const end = account.substring(account.length-10)
       return start + '...' + end
-    }
+    },
+    formatLastBeat(time) {
+      return formatDistance(new Date(time), this.now, { addSuffix: true, includeSeconds: true })
+    },
   }
 }
 </script>
