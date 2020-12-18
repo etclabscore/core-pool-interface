@@ -207,7 +207,8 @@ export default {
       interval: {
         stats: 2000,
         miners: 10000,
-        blocks: 10000
+        blocks: 10000,
+        payments: 10000,
       },
     }
   },
