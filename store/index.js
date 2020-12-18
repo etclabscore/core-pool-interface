@@ -20,6 +20,7 @@ export const state = () => ({
   networkHashrate: 0,
   miners: {},
   blocks: {},
+  payments: {},
   now: Date.now() // global now Date for time since calcs
 })
 
@@ -40,51 +41,64 @@ export const mutations = {
   SET_BLOCKS(state, blocks) {
     state.blocks = blocks
   },
+  SET_PAYMENTS(state, txns) {
+    state.payments = txns
+  },
   SET_NOW(state, now) {
     state.now = now
   }
 }
 
 export const actions = {
-    async stats({commit}) {
-        try {
-            const { data } = await axios.get(API_URL + 'stats')
-            // consola.log(data)
-            if ( data ) {
-                let info = {
-                    minersOnline: data.minersTotal,
-                    poolHashRate: data.hashrate,
-                    height: data.nodes[0].height,
-                    difficulty: data.nodes[0].difficulty,
-                    lastBlockFound: data.stats.lastBlockFound
-                }
-                commit('SET_STATS', info)
-            }
-        } catch (error) {
-            consola.error(new Error(error))
+  async stats({commit}) {
+    try {
+      const { data } = await axios.get(config.api + '/stats')
+      // consola.log(data)
+      if ( data ) {
+        let info = {
+          minersOnline: data.minersTotal,
+          poolHashRate: data.hashrate,
+          height: data.nodes[0].height,
+          difficulty: data.nodes[0].difficulty,
+          lastBlockFound: data.stats.lastBlockFound
         }
-    },
-    async miners({commit}) {
-        try {
-            const { data } = await axios.get(API_URL + 'miners')
-            if ( data ) {
-                commit('SET_MINERS', data.miners)
-            }
-        } catch (error) {
-            consola.error(new Error(error))
-        }
-    },
-    async blocks({commit}) {
-        try {
-            const { data } = await axios.get(API_URL + 'blocks')
-            if ( data ) {
-                commit('SET_BLOCKS', data)
-            }
-        } catch (error) {
-            consola.error(new Error(error))
-        }
-    },
-    now({commit}) {
-      commit('SET_NOW', Date.now())
-    } 
+        commit('SET_STATS', info)
+      }
+    } catch (error) {
+      consola.error(new Error(error))
+    }
+  },
+  async miners({commit}) {
+    try {
+      const { data } = await axios.get(config.api + '/miners')
+      if ( data ) {
+        commit('SET_MINERS', data.miners)
+      }
+    } catch (error) {
+      consola.error(new Error(error))
+    }
+  },
+  async blocks({commit}) {
+    try {
+      const { data } = await axios.get(config.api + '/blocks')
+      if ( data ) {
+        commit('SET_BLOCKS', data)
+      }
+    } catch (error) {
+      consola.error(new Error(error))
+    }
+  },
+  async payments({commit}) {
+    try {
+      const { data } = await axios.get(config.api + '/payments')
+      if ( data ) {
+        commit('SET_PAYMENTS', data)
+      }
+    } catch (error) {
+      consola.error(new Error(error))
+    }
+  },
+  now({commit}) {
+    commit('SET_NOW', Date.now())
+  } 
 }

@@ -255,6 +255,7 @@ export default {
     this.startSync('stats')
     this.startSync('miners')
     this.startSync('blocks')
+    this.startSync('payments')
     const t = this
     setInterval(function() {
       t.$store.dispatch('now')
