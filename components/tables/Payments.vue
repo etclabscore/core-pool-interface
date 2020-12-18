@@ -1,25 +1,38 @@
 <template>
-  <v-data-table
-    dense
-    :headers="headers"
-    :items="payments"
-    :footer-props="{itemsPerPageText: 'Txns per page', itemsPerPageOptions: [25, 50, 100]}"
-    :items-per-page="25"
-    no-data-text="No payments"
-  >
-    <template v-slot:item.timestamp="{ item }">
-      {{ dtf.format(item.timestamp*1000) }}
-    </template>
-    <template v-slot:item.address="{ item }">
-      {{ formatAccountHash(item.address) }}
-    </template>
-    <template v-slot:item.tx="{ item }">
-      {{ formatTxnHash(item.tx) }}
-    </template>
-    <template v-slot:item.amount="{ item }">
-      {{ formatReward(item.amount) }} ETC
-    </template>
-  </v-data-table>
+  <v-card flat tile>
+    <v-card-title>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        outlined
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      dense
+      :headers="headers"
+      :items="payments"
+      :footer-props="{itemsPerPageText: 'Payments per page', itemsPerPageOptions: [25, 50, 100]}"
+      :items-per-page="25"
+      :search="search"
+      no-data-text="No payments"
+    >
+      <template v-slot:item.timestamp="{ item }">
+        {{ dtf.format(item.timestamp*1000) }}
+      </template>
+      <template v-slot:item.address="{ item }">
+        {{ formatAccountHash(item.address) }}
+      </template>
+      <template v-slot:item.tx="{ item }">
+        {{ formatTxnHash(item.tx) }}
+      </template>
+      <template v-slot:item.amount="{ item }">
+        {{ formatReward(item.amount) }} ETC
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <script>
@@ -40,6 +53,7 @@ export default {
   },
   data () {
     return {
+      search: null,
       headers: [
         {
           text: 'Time',
