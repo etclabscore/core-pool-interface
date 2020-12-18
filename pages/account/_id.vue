@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12">
-    <v-row no-gutters style="border-bottom: 1px solid #2e2e2e;">
+    <v-row no-gutters class="bb-1">
       <v-col cols="12" md="4" sm="4" xs="12">
         <v-list dense>
           <v-list-item class="border-right">
@@ -137,14 +137,17 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
         <v-alert type="info">
           Your bulk stats JSON API URL:
           <a
-            :href="url + 'accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
+            :href="api + 'accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
             target="_blank"
             style="color:#fff;"
           >
-            {{ url + "accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
+            {{ api + "accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
           </a>
         </v-alert>
       </v-tab-item>
+      <v-tab-item >
+        <payments-table :payments="data.payments" no-data-text="No payments" />
+      </v-tab-item >
     </v-tabs-items>
   </v-col>
 </template>
@@ -152,15 +155,18 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
 <script>
 import axios from 'axios'
 import { formatDistance, formatDistanceToNow } from 'date-fns'
+import PaymentsTable from '~/components/tables/Payments'
 
 export default {
+  components: {
+    PaymentsTable
+  },
   async asyncData({ params }) {
     const id = params.id
     return { id }
   },
   data () {
     return {
-      url: 'http://127.0.0.1:8080/api/',
       errors: [],
       tab: null,
       data: {
@@ -190,11 +196,14 @@ export default {
     now() {
       return this.$store.state.now
     },
+    api() {
+      return this.$store.state.env.api
+    }
   },
   methods: {
     async fetch() {
       try {
-        const { data } = await axios.get(this.url + 'accounts/' + this.id)
+        const { data } = await axios.get(this.api + '/accounts/' + this.id)
         if (data) {
           console.log(data)
           this.data = data
