@@ -31,7 +31,7 @@
         </a>
       </template>
       <template v-slot:item.amount="{ item }">
-        {{ formatReward(item.amount) }} ETC
+        {{ formatReward(item.amount) }} {{ symbol }}
       </template>
     </v-data-table>
   </v-card>
@@ -73,6 +73,7 @@ export default {
   data () {
     return {
       search: null,
+      symbol: config.symbol,
       nf: new Intl.NumberFormat("en", {}),
       dtf: new Intl.DateTimeFormat('en', { // ( ͡° ͜ʖ ͡°)
         year: 'numeric',

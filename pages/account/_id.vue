@@ -10,7 +10,7 @@
             <v-list-item-content>
               <v-list-item-title>IMMATURE BAL.</v-list-item-title>
               <v-list-item-subtitle>
-                {{ formatEther(data.stats.immature) }} ETC
+                {{ formatEther(data.stats.immature) }} {{ symbol }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -21,7 +21,7 @@
             <v-list-item-content>
               <v-list-item-title>PENDING BAL.</v-list-item-title>
               <v-list-item-subtitle>
-                {{ formatEther(data.stats.balance) }} ETC
+                {{ formatEther(data.stats.balance) }} {{ symbol }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -31,7 +31,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>TOTAL PAID</v-list-item-title>
-              <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} ETC</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} {{ symbol }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -156,6 +156,7 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
 import axios from 'axios'
 import { formatDistance, formatDistanceToNow } from 'date-fns'
 import PaymentsTable from '~/components/tables/Payments'
+import config from '~/params/config.json'
 
 export default {
   components: {
@@ -169,6 +170,7 @@ export default {
     return {
       errors: [],
       tab: null,
+      symbol: config.symbol,
       data: {
         workers: {},
         workersOffline: 0,

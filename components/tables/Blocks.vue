@@ -74,7 +74,7 @@ export default {
         { text: 'Time Found', value: 'timestamp' },
         { text: 'Variance', value: 'shares'},
         { 
-          text: 'Reward (ETC)', 
+          text: 'Reward (' + config.symbol + ')', 
           align: 'right',
           value: 'reward'
         },
