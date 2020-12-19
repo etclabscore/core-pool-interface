@@ -31,7 +31,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>TOTAL PAID</v-list-item-title>
-              <v-list-item-subtitle>{{ data.paymentsTotal }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} ETC</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -93,7 +93,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>YOUR ROUND SHARE</v-list-item-title>
-              <v-list-item-subtitle>{{ data.roundShares }}  </v-list-item-subtitle>
+              <v-list-item-subtitle>{{ data.roundShares }}% </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -104,7 +104,7 @@
         Workers <v-chip label x-small class="ml-2">{{ data.workersTotal }}</v-chip>
       </v-tab>
       <v-tab>
-        Payouts
+        Payouts <v-chip label x-small class="ml-2">{{ data.paymentsTotal }}</v-chip>
       </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
@@ -183,7 +183,9 @@ export default {
           balance: 0,
           blocksFound: 0,
           immature: 0,
-          lastShare: 0
+          lastShare: 0,
+          paid: 0,
+          pending: 0
         },
       },
       payoutHeaders: [
