@@ -2,5 +2,9 @@
   "url": "http://127.0.0.1:8080",
   "api": "http://127.0.0.1:8080/api",
   "stratum": "127.0.0.1:8008",
-  "network": "classic"
+  "network": "mordor",
+  "explorer": {
+    "url": "https://expedition.dev",
+    "type": "expedition"
+  }
 }
