@@ -23,10 +23,12 @@
         {{ dtf.format(item.timestamp*1000) }}
       </template>
       <template v-slot:item.address="{ item }">
-        {{ formatAccountHash(item.address) }}
+        <nuxt-link :to="'/account/' + item.address">{{ formatAccountHash(item.address) }}</nuxt-link>
       </template>
       <template v-slot:item.tx="{ item }">
-        {{ formatTxnHash(item.tx) }}
+        <a :href="formatExplorerUrl(item.tx)" target="_blank">
+          {{ formatTxnHash(item.tx) }}
+        </a>
       </template>
       <template v-slot:item.amount="{ item }">
         {{ formatReward(item.amount) }} ETC
@@ -36,6 +38,8 @@
 </template>
 
 <script>
+import config from '~/params/config.json'
+
 export default {
   props: {
     payments: {
@@ -44,26 +48,31 @@ export default {
         return []
       }
     },
+    headers: {
+      type: Array,
+      default() {
+        return [
+          {
+            text: 'Time',
+            align: 'start',
+            value: 'timestamp'
+          },
+          { text: 'Address', value: 'address' },
+          { text: 'Tx ID', value: 'tx'},
+          { text: 'Amount', value: 'amount', align: 'right' },
+        ]
+      }
+    },
     noDataText: {
       type: String,
       default() {
         return "No payments"
       }
-    }
+    },
   },
   data () {
     return {
       search: null,
-      headers: [
-        {
-          text: 'Time',
-          align: 'start',
-          value: 'timestamp'
-        },
-        { text: 'Address', value: 'address' },
-        { text: 'Tx ID', value: 'tx'},
-        { text: 'Amount', value: 'amount', align: 'right' },
-      ],
       nf: new Intl.NumberFormat("en", {}),
       dtf: new Intl.DateTimeFormat('en', { // ( ͡° ͜ʖ ͡°)
         year: 'numeric',
@@ -82,7 +91,7 @@ export default {
   },
   methods: {
     formatAccountHash(account) {
-      if (account === '0x0') {
+      if (account === '0x0' || !account) {
         return 'N/A'
       }
       const start = account.substring(0,10)
@@ -99,6 +108,17 @@ export default {
     },
     formatReward(shannon) {
       return shannon / 1000000000
+    },
+    formatExplorerUrl(txnHash) {
+      let url = config.explorer.url
+      if (config.explorer.type === "expedition") {
+        url = url + '/tx/' + txnHash
+        let network = config.network
+        if (network === 'classic') {
+          network = 'mainnet'
+        }
+        return url + '?network=' + network
+      }
     }
   }
 }
