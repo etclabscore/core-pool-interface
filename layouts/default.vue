@@ -137,6 +137,24 @@
             <v-list-item-subtitle>{{ formatHashrate(stats.networkHashrate, true) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item class="stats-item ma-1">
+          <v-list-item-avatar>
+            <v-icon>mdi-timer-sand</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Epoch (etchash)</v-list-item-title>
+            <v-list-item-subtitle>{{ stats.epoch }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item class="stats-item ma-1">
+          <v-list-item-avatar>
+            <v-icon>mdi-chip</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>DAG</v-list-item-title>
+            <v-list-item-subtitle>{{ stats.dagSize }} MByte</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
       <template v-slot:append>
         <v-list>

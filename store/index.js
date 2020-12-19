@@ -3,6 +3,7 @@ import consola from 'consola'
 import config from '@/params/config.json'
 
 const TARGET_TIME = 13.2
+const EPOCH_LENGTH = 60000
 
 export const state = () => ({
   env: {
@@ -21,6 +22,8 @@ export const state = () => ({
   miners: {},
   blocks: {},
   payments: {},
+  epoch: 0,
+  dagSize: 0, // in MB
   now: Date.now() // global now Date for time since calcs
 })
 
@@ -33,7 +36,9 @@ export const mutations = {
     state.poolFee = info.poolFee | state.poolFee
     state.height = info.height | state.height
     state.difficulty = info.difficulty | state.difficulty
-    state.networkHashrate = state.difficulty / TARGET_TIME
+    state.networkHashrate = state.difficulty / TARGET_TIME,
+    state.epoch = Math.trunc(info.height / EPOCH_LENGTH)
+    state.dagSize = 1024 + (8 * state.epoch)
   },
   SET_MINERS(state, miners) {
     state.miners = miners
