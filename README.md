@@ -8,7 +8,7 @@ required
 - [x] pool & network stats drawer
 - [x] pool blocks page (mature, immature, pending)
 - [x] help page (nanominer, lolminer)
-- [ ] payments page
+- [x] payments page
 - [x] accounts page
 - [x] use date-fns instead of Intl for time
 - [x] add examples for additional etchash supported miners
