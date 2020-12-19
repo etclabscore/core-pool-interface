@@ -137,16 +137,16 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
         <v-alert type="info">
           Your bulk stats JSON API URL:
           <a
-            :href="api + 'accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
+            :href="api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
             target="_blank"
             style="color:#fff;"
           >
-            {{ api + "accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
+            {{ api + "/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
           </a>
         </v-alert>
       </v-tab-item>
       <v-tab-item >
-        <payments-table :payments="data.payments" no-data-text="No payments" />
+        <payments-table :payments="data.payments" :headers="payoutHeaders" no-data-text="No payments" />
       </v-tab-item >
     </v-tabs-items>
   </v-col>
@@ -186,6 +186,15 @@ export default {
           lastShare: 0
         },
       },
+      payoutHeaders: [
+        {
+          text: 'Time',
+          align: 'start',
+          value: 'timestamp'
+        },
+        { text: 'Tx ID', value: 'tx'},
+        { text: 'Amount', value: 'amount', align: 'right' },
+      ],
       nf: new Intl.NumberFormat("en", {})
     }
   },
