@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# params/config.json
+params/config.json
