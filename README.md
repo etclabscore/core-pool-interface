@@ -15,7 +15,7 @@ required
 
 additional
 
-- [ ] DAG calculator
+- [x] DAG calculator
 
 ## Rationale
 
