@@ -32,7 +32,9 @@
         {{ dtf.format(item.timestamp*1000) }}
       </template>
       <template v-slot:item.hash="{ item }">
-        {{ formatAccountHash(item.hash) }}
+        <a :href="formatExplorerUrl(item.hash)" target="_blank">
+          {{ formatAccountHash(item.hash) }}
+        </a>
       </template>
       <template v-slot:item.reward="{ item }">
         {{ formatReward(item.reward).toFixed(6) }}
@@ -42,6 +44,8 @@
 </template>
 
 <script>
+import config from '~/params/config.json'
+
 export default {
   props: {
     blocks: {
@@ -113,6 +117,17 @@ export default {
     },
     formatReward(wei) {
       return wei / 1000000000000000000
+    },
+    formatExplorerUrl(blockHash) {
+      let url = config.explorer.url
+      if (config.explorer.type === "expedition") {
+        url = url + '/block/' + blockHash
+        let network = config.network
+        if (network === 'classic') {
+          network = 'mainnet'
+        }
+        return url + '?network=' + network
+      }
     }
   }
 }
