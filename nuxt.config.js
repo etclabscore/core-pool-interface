@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
+import config from './params/config.json'
+
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -82,7 +84,7 @@ export default {
   hooks: {
     'content:file:beforeParse': (file) => {
       if (file.extension !== '.md') return
-      file.data = file.data.replace(/STRATUM_HOST/g, '127.0.0.1:8008')
+      file.data = file.data.replace(/STRATUM_HOST/g, config.stratum)
     }
   }
 }
