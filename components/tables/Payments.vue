@@ -26,9 +26,7 @@
         <nuxt-link :to="'/account/' + item.address">{{ formatAccountHash(item.address) }}</nuxt-link>
       </template>
       <template v-slot:item.tx="{ item }">
-        <a :href="formatExplorerUrl(item.tx)" target="_blank">
-          {{ formatTxnHash(item.tx) }}
-        </a>
+        <explorer-link :hash="item.tx" :config="config" :clip="12" />
       </template>
       <template v-slot:item.amount="{ item }">
         {{ formatReward(item.amount) }} {{ symbol }}
@@ -38,7 +36,12 @@
 </template>
 
 <script>
+import ExplorerLink from '~/components/ExplorerLink'
+
 export default {
+  components: {
+    ExplorerLink
+  },
   props: {
     payments: {
       type: Array,
@@ -92,7 +95,7 @@ export default {
   computed: {
     now() {
       return this.$store.state.now
-    }
+    },
   },
   methods: {
     formatAccountHash(account) {
@@ -103,27 +106,8 @@ export default {
       const end = account.substring(account.length-10)
       return start + '...' + end
     },
-    formatTxnHash(account) {
-      if (account === '0x0') {
-        return 'N/A'
-      }
-      const start = account.substring(0,16)
-      const end = account.substring(account.length-16)
-      return start + '...' + end
-    },
     formatReward(shannon) {
       return shannon / 1000000000
-    },
-    formatExplorerUrl(txnHash) {
-      let url = this.config.explorer.url
-      if (this.config.explorer.type === "expedition") {
-        url = url + '/tx/' + txnHash
-        let network = this.config.network
-        if (network === 'classic') {
-          network = 'mainnet'
-        }
-        return url + '?network=' + network
-      }
     }
   }
 }
