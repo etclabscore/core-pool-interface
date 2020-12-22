@@ -38,10 +38,11 @@
 </template>
 
 <script>
+// import config here as 'this' context within asyncData is not the 'this' we are looking for
 import config from '~/params/config.json'
 
 export default {
-  async asyncData ({ $content }) {
+  async asyncData ({ $content }) { 
     const network = config.network
     const path_prefix = 'help/miners/' + network
     let miners = []

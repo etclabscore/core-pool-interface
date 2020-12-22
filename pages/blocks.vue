@@ -43,13 +43,13 @@
         </v-tabs>
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <blocks-table :blocks="matured" no-data-text="No matured blocks" />
+            <blocks-table :blocks="matured" :config="config" no-data-text="No matured blocks" />
           </v-tab-item>
           <v-tab-item>
-            <blocks-table :blocks="immature" no-data-text="No immature blocks" />
+            <blocks-table :blocks="immature" :config="config" no-data-text="No immature blocks" />
           </v-tab-item>
           <v-tab-item>
-            <blocks-table :blocks="candidates" no-data-text="No pending blocks" />
+            <blocks-table :blocks="candidates" :config="config" no-data-text="No pending blocks" />
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -82,6 +82,9 @@ export default {
     },
     candidates() {
       return this.$store.state.blocks?.candidates || []
+    },
+    config() {
+      return this.$store.state.env
     }
   }
 }

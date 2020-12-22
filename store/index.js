@@ -4,12 +4,17 @@ import config from '@/params/config.json'
 
 const TARGET_TIME = 13.2
 const EPOCH_LENGTH = 60000
+const API_URL = config.api + '/api'
+
 
 export const state = () => ({
   env: {
     url: config.url,
-    api: config.api,
-    network: config.network
+    api: API_URL,
+    network: config.network,
+    stratum: config.stratum,
+    symbol: config.symbol,
+    explorer: config.explorer
   },
   minersOnline: 0,
   poolHashRate: 0,
@@ -57,7 +62,7 @@ export const mutations = {
 export const actions = {
   async stats({commit}) {
     try {
-      const { data } = await axios.get(config.api + '/stats')
+      const { data } = await axios.get(API_URL + '/stats')
       // consola.log(data)
       if ( data ) {
         let info = {
@@ -75,7 +80,7 @@ export const actions = {
   },
   async miners({commit}) {
     try {
-      const { data } = await axios.get(config.api + '/miners')
+      const { data } = await axios.get(API_URL + '/miners')
       if ( data ) {
         commit('SET_MINERS', data.miners)
       }
@@ -85,7 +90,7 @@ export const actions = {
   },
   async blocks({commit}) {
     try {
-      const { data } = await axios.get(config.api + '/blocks')
+      const { data } = await axios.get(API_URL + '/blocks')
       if ( data ) {
         commit('SET_BLOCKS', data)
       }
@@ -95,7 +100,7 @@ export const actions = {
   },
   async payments({commit}) {
     try {
-      const { data } = await axios.get(config.api + '/payments')
+      const { data } = await axios.get(API_URL + '/payments')
       if ( data ) {
         commit('SET_PAYMENTS', data)
       }

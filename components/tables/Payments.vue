@@ -38,8 +38,6 @@
 </template>
 
 <script>
-import config from '~/params/config.json'
-
 export default {
   props: {
     payments: {
@@ -63,6 +61,12 @@ export default {
         ]
       }
     },
+    config: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
     noDataText: {
       type: String,
       default() {
@@ -73,7 +77,7 @@ export default {
   data () {
     return {
       search: null,
-      symbol: config.symbol,
+      symbol: this.config.symbol,
       nf: new Intl.NumberFormat("en", {}),
       dtf: new Intl.DateTimeFormat('en', { // ( ͡° ͜ʖ ͡°)
         year: 'numeric',
@@ -111,10 +115,10 @@ export default {
       return shannon / 1000000000
     },
     formatExplorerUrl(txnHash) {
-      let url = config.explorer.url
-      if (config.explorer.type === "expedition") {
+      let url = this.config.explorer.url
+      if (this.config.explorer.type === "expedition") {
         url = url + '/tx/' + txnHash
-        let network = config.network
+        let network = this.config.network
         if (network === 'classic') {
           network = 'mainnet'
         }

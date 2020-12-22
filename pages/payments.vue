@@ -10,7 +10,7 @@
         </v-tabs>
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <payments-table :payments="payments" no-data-text="No payments" />
+            <payments-table :payments="payments" :config="config" no-data-text="No payments" />
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -35,6 +35,9 @@ export default {
     payments() {
       return this.$store.state.payments?.payments
     },
+    config() {
+      return this.$store.state.env
+    }
   }
 }
 </script>

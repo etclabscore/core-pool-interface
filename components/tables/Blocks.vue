@@ -44,14 +44,18 @@
 </template>
 
 <script>
-import config from '~/params/config.json'
-
 export default {
   props: {
     blocks: {
       type: Array,
       default() {
         return []
+      }
+    },
+    config: {
+      type: Object,
+      default() {
+        return {}
       }
     },
     noDataText: {
@@ -74,7 +78,7 @@ export default {
         { text: 'Time Found', value: 'timestamp' },
         { text: 'Variance', value: 'shares'},
         { 
-          text: 'Reward (' + config.symbol + ')', 
+          text: 'Reward (' + this.config.symbol + ')', 
           align: 'right',
           value: 'reward'
         },
@@ -119,10 +123,10 @@ export default {
       return wei / 1000000000000000000
     },
     formatExplorerUrl(blockHash) {
-      let url = config.explorer.url
-      if (config.explorer.type === "expedition") {
+      let url = this.config.explorer.url
+      if (this.config.explorer.type === "expedition") {
         url = url + '/block/' + blockHash
-        let network = config.network
+        let network = this.config.network
         if (network === 'classic') {
           network = 'mainnet'
         }

@@ -156,7 +156,6 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
 import axios from 'axios'
 import { formatDistance, formatDistanceToNow } from 'date-fns'
 import PaymentsTable from '~/components/tables/Payments'
-import config from '~/params/config.json'
 
 export default {
   components: {
@@ -170,7 +169,7 @@ export default {
     return {
       errors: [],
       tab: null,
-      symbol: config.symbol,
+      symbol: this.config.symbol,
       data: {
         workers: {},
         workersOffline: 0,
@@ -209,14 +208,14 @@ export default {
     now() {
       return this.$store.state.now
     },
-    api() {
-      return this.$store.state.env.api
+    config() {
+      return this.$store.state.env
     }
   },
   methods: {
     async fetch() {
       try {
-        const { data } = await axios.get(this.api + '/accounts/' + this.id)
+        const { data } = await axios.get(this.config.api + '/accounts/' + this.id)
         if (data) {
           console.log(data)
           this.data = data
