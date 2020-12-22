@@ -73,7 +73,7 @@ export default {
       search: null,
       headers: [
         {
-          text: 'Height',
+          text: 'Block Number',
           align: 'start',
           value: 'height'
         },
