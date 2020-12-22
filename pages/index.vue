@@ -20,7 +20,7 @@
           </v-col>
         </v-row>
       </v-card>
-      <v-alert v-if="network === 'mordor'" tile type="error" class="w-100">
+      <v-alert v-if="network === 'mordor'" outlined text dismissible tile type="warning" class="w-100">
         This pool is configured for the mordor test network. The ETC rewarded is testnet ETC.
       </v-alert>
       <v-card flat tile>
