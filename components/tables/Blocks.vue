@@ -32,9 +32,7 @@
         {{ dtf.format(item.timestamp*1000) }}
       </template>
       <template v-slot:item.hash="{ item }">
-        <a :href="formatExplorerUrl(item.hash)" target="_blank">
-          {{ formatAccountHash(item.hash) }}
-        </a>
+        <explorer-link :hash="item.hash" link-type="block" :clip="8" :config="config" />
       </template>
       <template v-slot:item.reward="{ item }">
         {{ formatReward(item.reward).toFixed(6) }}
@@ -44,7 +42,12 @@
 </template>
 
 <script>
+import ExplorerLink from '~/components/ExplorerLink'
+
 export default {
+  components: {
+    ExplorerLink
+  },
   props: {
     blocks: {
       type: Array,
@@ -84,7 +87,7 @@ export default {
         },
         { text: 'Type', value: 'uncle', align: 'right' },
       ],
-      dtf: new Intl.DateTimeFormat('en', { // ( ͡° ͜ʖ ͡°)
+      dtf: new Intl.DateTimeFormat('en', {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
@@ -92,24 +95,10 @@ export default {
         minute: 'numeric',
         second: 'numeric'
       }),
-      nf: new Intl.NumberFormat("en", {}),
-      rtf: new Intl.RelativeTimeFormat("en", {
-        localeMatcher: "lookup", // other values: "lookup"
-        numeric: "always", // other values: "auto"
-        style: "short", // other values: "short" or "narrow"
-
-      })
+      nf: new Intl.NumberFormat("en", {})
     }
   },
   methods: {
-    formatAccountHash(account) {
-      if (account === '0x0') {
-        return 'N/A'
-      }
-      const start = account.substring(0,10)
-      const end = account.substring(account.length-10)
-      return start + '...' + end
-    },
     formatBlockType(block) {
       if (!block.uncle && !block.orphan) {
         return { color:'success', text: 'Block' }
@@ -121,17 +110,6 @@ export default {
     },
     formatReward(wei) {
       return wei / 1000000000000000000
-    },
-    formatExplorerUrl(blockHash) {
-      let url = this.config.explorer.url
-      if (this.config.explorer.type === "expedition") {
-        url = url + '/block/' + blockHash
-        let network = this.config.network
-        if (network === 'classic') {
-          network = 'mainnet'
-        }
-        return url + '?network=' + network
-      }
     }
   }
 }
