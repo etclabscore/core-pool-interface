@@ -46,12 +46,12 @@ $ npm install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
 # generate static project
 $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Development
+
+vue-open-etc-pool is built using [Vue.js](https://vuejs.org/), [NuxtJS](https://nuxtjs.org/), and [Vuetify](https://vuetifyjs.com/). If modifying/contributing a basic understanding of these frameworks is recommended.
