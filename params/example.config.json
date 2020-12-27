@@ -1,0 +1,18 @@
+{
+  "title": "vue-open-etc-pool",
+  "description": "vue based frontend for open-etc-pool",
+  "logo": "etc.svg",
+  "favicon": "favicon.ico",
+  "url": "http://127.0.0.1:3000",
+  "api": "http://127.0.0.1:8080",
+  "stratum": "127.0.0.1:8008",
+  "network": "classic",
+  "explorer": {
+    "url": "https://expedition.dev",
+    "type": "expedition"
+  },
+  "symbol": "ETC",
+  "poolFee": "1",
+  "payoutThreshold": "0.5",
+  "blocktime": 13.2
+}
