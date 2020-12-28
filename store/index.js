@@ -2,25 +2,31 @@ import axios from 'axios'
 import consola from 'consola'
 import config from '@/params/config.json'
 
-const TARGET_TIME = 13.2
-const EPOCH_LENGTH = 60000
+const TARGET_TIME = config.blocktime
+const EPOCH_LENGTH = config.epochLength
 const API_URL = config.api + '/api'
-
 
 export const state = () => ({
   env: {
+    title: config.title,
+    description: config.description,
+    logo: config.logo,
+    favicon: config.favicon,
     url: config.url,
     api: API_URL,
     network: config.network,
     stratum: config.stratum,
     symbol: config.symbol,
-    explorer: config.explorer
+    explorer: config.explorer,
+    poolFee: config.poolFee,
+    payoutThreshold: config.payoutThreshold,
+    blocktime: TARGET_TIME,
+    epochLength: EPOCH_LENGTH
   },
   minersOnline: 0,
   poolHashRate: 0,
   lastBlockFound: 0,
   roundShares: 0,
-  poolFee: 1,
   height: 0,
   difficulty: 0,
   networkHashrate: 0,

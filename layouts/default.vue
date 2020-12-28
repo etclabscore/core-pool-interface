@@ -46,7 +46,7 @@
       <v-spacer />
       <v-toolbar-title>
         <v-avatar size=32>
-          <img src="@/static/etc.svg" />
+          <img :src="require('@/static/' + logo)" />
         </v-avatar>
         {{ title }}
       </v-toolbar-title>
@@ -105,7 +105,7 @@
           <v-list-item-content>
             <v-list-item-title>Pool Fee</v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action-text>{{ stats.poolFee }}%</v-list-item-action-text>
+          <v-list-item-action-text>{{ stats.env.poolFee }}%</v-list-item-action-text>
         </v-list-item>
       </v-list>
       <v-list dense class="ma-0 pa-0">
@@ -216,7 +216,8 @@ export default {
         }
       ],
       miniVariant: true,
-      title: 'open-etc-pool',
+      title: this.$store.state.env.title,
+      logo: this.$store.state.env.logo,
       nf: new Intl.NumberFormat("en", {}),
       timer: {
         stats: null,
