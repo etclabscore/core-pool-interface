@@ -181,6 +181,18 @@
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-spacer />
+      <v-switch
+        color="primary"
+        small
+        v-model="darkmode"
+        inset
+        flat
+        class="mx-0 my-auto pa-0"
+        style="height:24px;"
+        :append-icon="darkmode ? 'mdi-moon-waxing-crescent' : 'mdi-weather-sunny'"
+        prepend-icon="mdi-theme-light-dark"
+      ></v-switch>
     </v-footer>
   </v-app>
 </template>
@@ -238,6 +250,14 @@ export default {
     },
     now() {
       return this.$store.state.now
+    },
+    darkmode: {
+      get() {
+        return this.$vuetify.theme.dark
+      },
+      set() {
+        this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      }
     }
   },
   methods: {
