@@ -3,7 +3,8 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
+      mobile-breakpoint="sm"
+      clipped
       fixed
       app
     >
@@ -42,7 +43,7 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon :class="{ 'd-xs-flex': true, 'd-md-none': drawer}" @click.stop="drawer = !drawer" />
       <v-spacer />
       <v-toolbar-title>
         <v-avatar size=32>
@@ -55,7 +56,8 @@
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawerRight"
-      :clipped="true"
+      mobile-breakpoint="sm"
+      clipped
       fixed
       right
       app
@@ -189,7 +191,6 @@ import { formatDistance } from 'date-fns'
 export default {
   data () {
     return {
-      clipped: true,
       drawer: true,
       drawerRight: true,
       fixed: true,
