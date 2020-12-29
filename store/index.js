@@ -1,9 +1,10 @@
 import axios from 'axios'
 import consola from 'consola'
 import config from '@/params/config.json'
+import networks from '@/params/networks.json'
 
-const TARGET_TIME = config.blocktime
-const EPOCH_LENGTH = config.epochLength
+const TARGET_TIME = networks[config.network].blockTime
+const EPOCH_LENGTH = networks[config.network].epochLength
 const API_URL = config.api + '/api'
 
 export const state = () => ({
@@ -14,9 +15,9 @@ export const state = () => ({
     favicon: config.favicon,
     url: config.url,
     api: API_URL,
-    network: config.network,
+    network: networks[config.network],
     stratum: config.stratum,
-    symbol: config.symbol,
+    symbol: networks[config.network].symbol,
     explorer: config.explorer,
     poolFee: config.poolFee,
     payoutThreshold: config.payoutThreshold,

@@ -1,0 +1,35 @@
+{
+    "classic": {
+        "title": "Ethereum Classic",
+        "symbol": "ETC",
+        "icon": "etc.svg",
+        "blockTime": 13.2,
+        "epochLength": 60000,
+        "algo": "etchash"
+    },
+    "mordor": {
+        "title": "Mordor Testnet",
+        "symbol": "ETC",
+        "icon": "etc.svg",
+        "blockTime": 13.2,
+        "epochLength": 60000,
+        "algo": "etchash",
+        "testnet": true
+    },
+    "ethereum": {
+        "title": "Ethereum Mainnet",
+        "symbol": "ETH",
+        "icon": "eth.png",
+        "blockTime": 13.2,
+        "epochLength": 30000,
+        "algo": "ethash"
+    },
+    "ubiq": {
+        "title": "Ubiq Mainnet",
+        "symbol": "UBQ",
+        "icon": "ubq.svg",
+        "blockTime": 88,
+        "epochLength": 30000,
+        "algo": "ubqhash"
+    }
+}
