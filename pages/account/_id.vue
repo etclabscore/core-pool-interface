@@ -99,6 +99,21 @@
         </v-list>
       </v-col>
     </v-row>
+    <v-alert tile dismissible type="info">
+      Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.
+There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.
+Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs. 
+    </v-alert>
+    <v-alert tile dismissible type="info">
+      Your bulk stats JSON API URL:
+      <a
+        :href="config.api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
+        target="_blank"
+        style="color:#fff;"
+      >
+        {{ config.api + "/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
+      </a>
+    </v-alert>
     <v-tabs grow v-model="tab">
       <v-tab>
         Workers <v-chip label x-small class="ml-2">{{ data.workersTotal }}</v-chip>
@@ -108,21 +123,6 @@
       </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
-      <v-alert dismissible type="info">
-        Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.
-There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.
-Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs. 
-      </v-alert>
-      <v-alert dismissible type="info">
-        Your bulk stats JSON API URL:
-        <a
-          :href="config.api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
-          target="_blank"
-          style="color:#fff;"
-        >
-          {{ config.api + "/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
-        </a>
-      </v-alert>
       <v-tab-item >
         <v-simple-table fixed-header>
           <template v-slot:default>
