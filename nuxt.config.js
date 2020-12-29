@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
 import config from './params/config.json'
 
 
@@ -60,18 +60,7 @@ export default {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: '#6fceb7',
-
-        },
-        light: {
-          primary: '#6fceb7',
-        }
-      }
-    }
+    theme: config.theme
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
