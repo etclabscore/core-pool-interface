@@ -60,13 +60,9 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 import { formatDistance, formatDistanceToNow } from 'date-fns'
 
 export default {
-  components: {
-    Logo,
-  },
   data () {
     return {
       headers: [
