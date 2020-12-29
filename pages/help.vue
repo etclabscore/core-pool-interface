@@ -2,7 +2,7 @@
   <v-row justify="center" align="center">
     <v-col cols="12" sm="12" md="12">
       <v-row no-gutters class="px-4">
-        <v-alert tile type="info" class="w-100 mb-0">
+        <v-alert type="info" class="w-100 mb-0">
           Change the address in the examples below to YOUR address before starting your miner.
         </v-alert>
       </v-row>
@@ -11,11 +11,9 @@
           <v-card
             v-for="(miner, index) in miners" :key="index"
             tile
-            flat
             class="my-2"
-            style="border: 1px solid #2e2e2e;" 
           >
-            <v-card-title class="headline ma-0" style="background-color:#2e2e2e;">
+            <v-card-title class="headline ma-0">
               {{ miner.title }}
               <v-spacer />
               <a class="pa-0" :href="miner.releases" target="_blank">
@@ -27,7 +25,7 @@
             </v-card-title>
             <v-card-text class="pa-0">
               <article>
-                <nuxt-content :document="miner" />
+                <nuxt-content :document="miner" :class="{'code-lightmode': !darkmode}"/>
               </article>
             </v-card-text>
           </v-card>
@@ -92,6 +90,17 @@ export default {
     return {
       miners
     }
+  },
+  computed: {
+    darkmode() {
+      return this.$vuetify.theme.dark
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .v-card__title {
+    background-color: var(--v-secondary-base) !important;
+  }
+</style>>

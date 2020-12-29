@@ -1,6 +1,3 @@
-$primary:   #6fceb7 !default;
-$secondary: #e76754 !default;
-
 $grey1:     #111 !default;
 $grey2:     #222 !default;
 $grey3:     #333 !default;
@@ -11,5 +8,4 @@ $greyLight: #e6e6e6 !default;
 
 $transparent: rgba(0,0,0,0);
 
-@import 'scrollbars';
 @import 'custom';

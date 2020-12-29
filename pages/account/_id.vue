@@ -1,6 +1,6 @@
 <template>
-  <v-col cols="12">
-    <v-row no-gutters class="bb-1">
+  <v-col cols="12" class="pa-0">
+    <v-row no-gutters class="border-bottom">
       <v-col cols="12" md="4" sm="4" xs="12">
         <v-list dense>
           <v-list-item class="border-right">
@@ -10,7 +10,7 @@
             <v-list-item-content>
               <v-list-item-title>IMMATURE BAL.</v-list-item-title>
               <v-list-item-subtitle>
-                {{ formatEther(data.stats.immature) }} {{ symbol }}
+                {{ formatEther(data.stats.immature) }} {{ config.symbol }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -21,7 +21,7 @@
             <v-list-item-content>
               <v-list-item-title>PENDING BAL.</v-list-item-title>
               <v-list-item-subtitle>
-                {{ formatEther(data.stats.balance) }} {{ symbol }}
+                {{ formatEther(data.stats.balance) }} {{ config.symbol }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -31,7 +31,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>TOTAL PAID</v-list-item-title>
-              <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} {{ symbol }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} {{ config.symbol }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -108,6 +108,21 @@
       </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
+      <v-alert dismissible type="info">
+        Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.
+There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.
+Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs. 
+      </v-alert>
+      <v-alert dismissible type="info">
+        Your bulk stats JSON API URL:
+        <a
+          :href="config.api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
+          target="_blank"
+          style="color:#fff;"
+        >
+          {{ config.api + "/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
+        </a>
+      </v-alert>
       <v-tab-item >
         <v-simple-table fixed-header>
           <template v-slot:default>
@@ -129,24 +144,9 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-alert type="info">
-          Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.
-There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.
-Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs. 
-        </v-alert>
-        <v-alert type="info">
-          Your bulk stats JSON API URL:
-          <a
-            :href="api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
-            target="_blank"
-            style="color:#fff;"
-          >
-            {{ api + "/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71" }}
-          </a>
-        </v-alert>
       </v-tab-item>
       <v-tab-item >
-        <payments-table :payments="data.payments" :headers="payoutHeaders" no-data-text="No payments" />
+        <payments-table :payments="data.payments" :headers="payoutHeaders" :config="config" no-data-text="No payments" />
       </v-tab-item >
     </v-tabs-items>
   </v-col>
@@ -163,13 +163,13 @@ export default {
   },
   async asyncData({ params }) {
     const id = params.id
+    console.log(id)
     return { id }
   },
   data () {
     return {
       errors: [],
       tab: null,
-      symbol: this.config.symbol,
       data: {
         workers: {},
         workersOffline: 0,
@@ -202,7 +202,7 @@ export default {
     }
   },
   created() {
-    this.fetch()
+    this.fetchData(this.id)
   },
   computed: {
     now() {
@@ -213,9 +213,9 @@ export default {
     }
   },
   methods: {
-    async fetch() {
+    async fetchData(address) {
       try {
-        const { data } = await axios.get(this.config.api + '/accounts/' + this.id)
+        const { data } = await axios.get(this.config.api + '/accounts/' + address)
         if (data) {
           console.log(data)
           this.data = data

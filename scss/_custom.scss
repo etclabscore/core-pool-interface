@@ -27,12 +27,11 @@ a {
 }
 
 .nuxt-content-highlight pre {
-  background-color: #1e1e1e !important;
+  background-color: $transparent !important;
   border: none;
 }
 
 .nuxt-content-highlight pre code {
-  background-color: #1e1e1e !important;
-  color: #ccc;
+  background-color:$transparent !important;
   text-shadow: none !important;
 }

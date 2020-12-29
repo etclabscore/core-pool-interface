@@ -1,5 +1,5 @@
 <template>
-  <v-app dark style="background:#1e1e1e;">
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -64,7 +64,7 @@
     >
       <v-list dense class="ma-0 pa-0">
         <v-subheader>POOL</v-subheader>
-        <v-list-item class="stats-item ma-1">
+        <v-list-item class="stats-item ma-1 darken2">
           <v-list-item-avatar>
             <v-icon>mdi-gauge</v-icon>
           </v-list-item-avatar>
@@ -82,15 +82,6 @@
             <v-list-item-subtitle>{{ formatTimeSince(this.stats.lastBlockFound) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <!--<v-list-item class="stats-item ma-1">
-          <v-list-item-icon>
-            <v-icon>mdi-lock-clock</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Current Round Variance</v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action-text>{{ stats.roundVariance }}</v-list-item-action-text>
-        </v-list-item>-->
         <v-list-item class="stats-item ma-1">
           <v-list-item-avatar>
             <v-icon>mdi-pickaxe</v-icon>
@@ -305,12 +296,30 @@ export default {
 }
 </script>
 
-<style>
-.stats-item {
-  background-color:#2e2e2e;
-  border-bottom-left-radius: 32px !important;
-  border-top-left-radius: 32px !important;
-}
+<style lang="scss" scoped>
+  .stats-item {
+    background-color: var(--v-secondary-base) !important;
+    border-bottom-left-radius: 32px !important;
+    border-top-left-radius: 32px !important;
+  }
+</style>
 
+<style lang="scss">
+  ::-webkit-scrollbar
+  {
+    width: 6px;  /* for vertical scrollbars */
+    height: 6px; /* for horizontal scrollbars */
+    border-radius: 3px;
+  }
 
+  ::-webkit-scrollbar-track
+  {
+    background: var(--v-secondary-base) !important;
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    background: var(--v-primary-base) !important;
+    border-radius: 3px;
+  }
 </style>
