@@ -11,11 +11,8 @@
     "url": "https://expedition.dev",
     "type": "expedition"
   },
-  "symbol": "ETC",
   "poolFee": "1",
   "payoutThreshold": "0.5",
-  "blocktime": 13.2,
-  "epochLength": 60000,
   "theme": {
     "dark": true,
     "themes": {
@@ -37,6 +34,9 @@
         "success": "#4CAF50",
         "warning": "#FFC107"
       }
+    },
+    "options": { 
+      "customProperties": true 
     }
   }
 }

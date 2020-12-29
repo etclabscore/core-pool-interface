@@ -105,6 +105,15 @@
         <v-subheader text-right>NETWORK</v-subheader>
         <v-list-item class="stats-item ma-1">
           <v-list-item-avatar>
+            <img :src="require('~/static/' + stats.env.network.icon)"></img>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>{{ stats.env.network.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ stats.env.network.algo }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item class="stats-item ma-1">
+          <v-list-item-avatar>
             <v-icon>mdi-cube-scan</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
@@ -135,7 +144,7 @@
             <v-icon>mdi-timer-sand</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Epoch (etchash)</v-list-item-title>
+            <v-list-item-title>Epoch ({{ stats.env.network.algo }})</v-list-item-title>
             <v-list-item-subtitle>{{ stats.epoch }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
