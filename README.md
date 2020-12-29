@@ -14,6 +14,8 @@ cp params/example.config.json params/config.json
 nano params/config.json
 ```
 
+See: [params/README.md](https://github.com/etclabscore/vue-open-etc-pool/blob/master/params/README.md) for more details.
+
 ## Build Setup
 
 ```bash
