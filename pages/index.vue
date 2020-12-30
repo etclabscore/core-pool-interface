@@ -1,28 +1,38 @@
 <template>
   <v-row justify="center" align="center" no-gutters class="pa-0">
     <v-col cols="12" class="pa-0">
-      <v-card flat tile style="background-color: #000000;" class="mb-0">
+      <v-card flat tile class="mb-0">
+        <v-img height="200" :src="require('~/static/banner.jpg')" gradient="to top right, rgba(0,0,0,.8), rgba(255,255,201,.33)" class="white--text align-end">
+          <v-card-title>
+            <v-list style="background-color:rgba(0,0,0,0);">
+              <v-list-item style="background-color:rgba(0,0,0,0);color:#fff;">
+                <v-list-item-avatar>
+                  <img :src="require('~/static/' + config.logo)"/>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>{{ config.title }}</v-list-item-title>
+                  <v-list-item-subtitle>{{ config.description }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card-title>
+        </v-img>
+        <v-alert v-if="network.testnet" outlined text dismissible tile type="warning" class="w-100 mb-0">
+          This pool is configured for the {{ network.title }}. The {{ network.symbol }} rewarded is testnet {{ network.symbol }}.
+        </v-alert>
         <v-row no-gutters>
-          <v-col cols="12" md="6" sm="6" xs="12">
-            <v-img contain height="300px" :src="require('~/static/banner.jpg')"></v-img>
-          </v-col>
-          <v-col cols="12" md="6" sm="6" xs="12" class="pt-8">
+          <v-col cols="12" xs="12">
             <v-card-text>
               <ul>
-                <li>Min. payout threshold: 0.5 ETC, Payouts are continuos throughout the day.</li>
-                <li>PROP Stable and profitable pool with regular payouts.</li>
-                <li>Powered by open-etc-pool.</li>
-                <li>Etchash (ECIP-1099) support.</li>
-                <li>Full ECIP-1017 implementation.</li>
+                <li>Min. payout threshold: {{ config.payoutThreshold }} {{ config.network.symbol }}.</li>
+                <li>{{ config.mode }} stable and profitable pool with regular payouts.</li>
+                <li>Powered by [core-pool](https://github.com/etclabscore/core-pool).</li>
                 <li>GetWork & Stratum supported.</li>
               </ul>
             </v-card-text>
           </v-col>
         </v-row>
       </v-card>
-      <v-alert v-if="network.testnet" outlined text dismissible tile type="warning" class="w-100">
-        This pool is configured for the {{ network.title }}. The {{ network.symbol }} rewarded is testnet {{ network.symbol }}.
-      </v-alert>
       <v-card flat tile>
         <v-card-title>
           <v-text-field
@@ -89,6 +99,9 @@ export default {
           arr.push({account: miner, hashrate: obj[miner].hr, lastBeat: obj[miner].lastBeat*1000, offline: obj[miner.offline]})
       }
       return arr
+    },
+    config() {
+      return this.$store.state.env
     },
     network() {
       return this.$store.state.env.network

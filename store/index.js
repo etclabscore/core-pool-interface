@@ -23,7 +23,8 @@ export const state = () => ({
     payoutThreshold: config.payoutThreshold,
     blocktime: TARGET_TIME,
     epochLength: EPOCH_LENGTH,
-    extraPools: config.extraPools
+    extraPools: config.extraPools,
+    mode: config.mode,
   },
   networks: networks,
   minersOnline: 0,
