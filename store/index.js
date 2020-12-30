@@ -13,6 +13,7 @@ export const state = () => ({
     description: config.description,
     logo: config.logo,
     favicon: config.favicon,
+    banner: config.banner,
     url: config.url,
     api: API_URL,
     network: networks[config.network],
