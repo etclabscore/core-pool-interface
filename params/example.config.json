@@ -1,6 +1,6 @@
 {
-  "title": "vue-open-etc-pool",
-  "description": "vue based frontend for open-etc-pool",
+  "title": "vue-core-pool",
+  "description": "vue based frontend for core-pool",
   "logo": "etc.svg",
   "favicon": "favicon.png",
   "banner": "banner.jpg",

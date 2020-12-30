@@ -1,20 +1,20 @@
-# vue-open-etc-pool
+# vue-core-pool
 
-vue based frontend for open-etc-pool
+vue based frontend for core-pool
 
 ## Install
 
 ```bash
 # clone the repo
-git clone https://github.com/etclabscore/vue-open-etc-pool.git
-cd vue-open-etc-pool
+git clone https://github.com/etclabscore/vue-core-pool.git
+cd vue-core-pool
 
 # configure
 cp params/example.config.json params/config.json
 nano params/config.json
 ```
 
-See: [params/README.md](https://github.com/etclabscore/vue-open-etc-pool/blob/master/params/README.md) for more details.
+See: [params/README.md](https://github.com/etclabscore/vue-core-pool/blob/master/params/README.md) for more details.
 
 ## Build Setup
 
@@ -40,7 +40,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 your.pool.domain.com {
   file_server
-  root * /home/etclabscore/vue-open-etc-pool/dist
+  root * /home/etclabscore/vue-core-pool/dist
   try_files {path} /index.html
   encode gzip
 }
