@@ -24,5 +24,20 @@
             "dag": "DAG"
         },
         "hide": "Hide"
+    },
+    "pages": {
+        "home": {
+            "testnetAlert": "This pool is configured for the {title}. The {symbol} rewarded is testnet {symbol}.",
+            "minimumPayout": "Min. payout threshold: {threshold} {symbol}.",
+            "mode": "{mode} stable and profitable pool with regular payouts.",
+            "poweredBy": "Powered by",
+            "protocols": "Getwork & Stratum supported.",
+            "account": "Account",
+            "hashrate": "Hashrate",
+            "lastBeat": "Last Beat",
+            "noMiners": "No miners connected",
+            "minersPerPage": "Miners per page",
+            "search": "Search by account"
+        }
     }
 }

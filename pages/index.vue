@@ -18,7 +18,7 @@
           </v-card-title>
         </v-img>
         <v-alert v-if="network.testnet" outlined text dismissible tile type="warning" class="w-100 mb-0">
-          This pool is configured for the {{ network.title }}. The {{ network.symbol }} rewarded is testnet {{ network.symbol }}.
+          {{ $tc('pages.home.testnetAlert', 0, {title: config.network.title, symbol: config.network.symbol}) }}
         </v-alert>
         <v-card-text class="py-1">
           <v-list style="background-color:rgba(0,0,0,0);">
@@ -33,10 +33,10 @@
             </v-list-item>
           </v-list>
           <ul>
-            <li>Min. payout threshold: {{ config.payoutThreshold }} {{ config.network.symbol }}.</li>
-            <li>{{ config.mode }} stable and profitable pool with regular payouts.</li>
-            <li>Powered by <a href="https://github.com/etclabscore/core-pool" target="_blank">core-pool</a>.</li>
-            <li>GetWork & Stratum supported.</li>
+            <li>{{ $tc('pages.home.minimumPayout', 0, {threshold: config.payoutThreshold, symbol: config.network.symbol}) }}</li>
+            <li>{{ $tc('pages.home.mode', 0, {mode: config.mode }) }}</li>
+            <li>{{ $t('pages.home.poweredBy') }} <a href="https://github.com/etclabscore/core-pool" target="_blank">core-pool</a>.</li>
+            <li>{{ $t('pages.home.protocols') }}</li>
           </ul>
         </v-card-text>
       </v-card>
@@ -45,7 +45,7 @@
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            :label="$t('pages.home.search')"
             single-line
             outlined
             hide-details
@@ -56,10 +56,10 @@
           :headers="headers"
           :items="miners"
           :search="search"
-          :footer-props="{itemsPerPageText: 'Miners per page', itemsPerPageOptions: [25, 50, 100]}"
+          :footer-props="{itemsPerPageText: $t('pages.home.minersPerPage'), itemsPerPageOptions: [25, 50, 100]}"
           :options="{itemsPerPage: 25}"
           :items-per-page="-1"
-          no-data-text="No miners connected"
+          :no-data-text="$t('pages.home.noMiners')"
         >
           <template v-slot:item.account="{ item }">
             <nuxt-link :to="'/account/' + item.account">{{ formatAccountHash(item.account) }}</nuxt-link>
@@ -84,13 +84,13 @@ export default {
     return {
       headers: [
         {
-          text: 'Account',
+          text: this.$t('pages.home.account'),
           align: 'start',
           value: 'account'
         },
-        { text: 'Hashrate', value: 'hashrate' },
+        { text: this.$t('pages.home.hashrate'), value: 'hashrate' },
         { 
-          text: 'Last Beat', 
+          text: this.$t('pages.home.lastBeat'), 
           align: 'right',
           value: 'lastBeat'
         },
