@@ -32,7 +32,7 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>{{ stats.networks[item.network].title }}</v-list-item-title>
-              <v-list-item-subtitle>{{ item.type }} mining pool</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ item.type }} {{ $t('menu.miningPool') }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click.stop="miniVariant = !miniVariant">
@@ -40,7 +40,7 @@
               <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>Minimize</v-list-item-title>
+              <v-list-item-title>{{ $t('menu.minimize') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -72,13 +72,13 @@
       app
     >
       <v-list dense class="ma-0 pa-0">
-        <v-subheader>POOL</v-subheader>
+        <v-subheader>{{ $t('info.pool.title') }}</v-subheader>
         <v-list-item class="stats-item ma-1 darken2">
           <v-list-item-avatar>
             <v-icon>mdi-gauge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Pool Hashrate</v-list-item-title>
+            <v-list-item-title>{{ $t('info.pool.hashrate') }}</v-list-item-title>
             <v-list-item-subtitle>{{ formatHashrate(stats.poolHashRate, true) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -87,7 +87,7 @@
             <v-icon>mdi-clock-outline</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Last Block Found</v-list-item-title>
+            <v-list-item-title>{{ $t('info.pool.lastBlock') }}</v-list-item-title>
             <v-list-item-subtitle>{{ formatTimeSince(this.stats.lastBlockFound) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -96,7 +96,7 @@
             <v-icon>mdi-pickaxe</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Miners Online</v-list-item-title>
+            <v-list-item-title>{{ $t('info.pool.miners') }}</v-list-item-title>
           </v-list-item-content>
           <v-list-item-action-text>{{ stats.minersOnline }}</v-list-item-action-text>
         </v-list-item>
@@ -105,13 +105,13 @@
             <v-icon>mdi-cash</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Pool Fee</v-list-item-title>
+            <v-list-item-title>{{ $t('info.pool.fee') }}</v-list-item-title>
           </v-list-item-content>
           <v-list-item-action-text>{{ stats.env.poolFee }}%</v-list-item-action-text>
         </v-list-item>
       </v-list>
       <v-list dense class="ma-0 pa-0">
-        <v-subheader text-right>NETWORK</v-subheader>
+        <v-subheader text-right>{{ $t('info.network.title') }}</v-subheader>
         <v-list-item class="stats-item ma-1">
           <v-list-item-avatar>
             <img :src="require('~/static/' + stats.env.network.icon)" />
@@ -126,7 +126,7 @@
             <v-icon>mdi-cube-scan</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Block Height</v-list-item-title>
+            <v-list-item-title>{{ $t('info.network.height') }}</v-list-item-title>
             <v-list-item-subtitle>{{ nf.format(stats.height) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -135,7 +135,7 @@
             <v-icon>mdi-lock</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Network Difficulty</v-list-item-title>
+            <v-list-item-title>{{ $t('info.network.difficulty') }}</v-list-item-title>
             <v-list-item-subtitle>{{ formatHashrate(stats.difficulty, false) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -144,7 +144,7 @@
             <v-icon>mdi-gauge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Network Hashrate</v-list-item-title>
+            <v-list-item-title>{{ $t('info.network.hashrate') }}</v-list-item-title>
             <v-list-item-subtitle>{{ formatHashrate(stats.networkHashrate, true) }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -153,7 +153,7 @@
             <v-icon>mdi-timer-sand</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Epoch ({{ stats.env.network.algo }})</v-list-item-title>
+            <v-list-item-title>{{ $t('info.network.epoch') }} ({{ stats.env.network.algo }})</v-list-item-title>
             <v-list-item-subtitle>{{ stats.epoch }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -162,7 +162,7 @@
             <v-icon>mdi-chip</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>DAG</v-list-item-title>
+            <v-list-item-title>{{ $t('info.network.dag') }}</v-list-item-title>
             <v-list-item-subtitle>{{ stats.dagSize }} MByte</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -174,7 +174,7 @@
               <v-icon>mdi-chevron-right</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>Hide</v-list-item-title>
+              <v-list-item-title>{{ $t('info.hide') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -218,22 +218,22 @@ export default {
       items: [
         {
           icon: 'mdi-home',
-          title: 'Home',
+          title: this.$t('menu.home'),
           to: '/'
         },
         {
           icon: 'mdi-cube-outline',
-          title: 'Pool Blocks',
+          title: this.$t('menu.blocks'),
           to: '/blocks'
         },
         {
           icon: 'mdi-send',
-          title: 'Payments',
+          title: this.$t('menu.payments'),
           to: '/payments'
         },
         {
           icon: 'mdi-help-circle-outline',
-          title: 'Help',
+          title: this.$t('menu.help'),
           to: '/help'
         }
       ],
@@ -273,7 +273,10 @@ export default {
     formatHashrate(bytes, showHash) {
       const sizes = ['', 'K', 'M', 'G', 'T']
       if (bytes === 0) {
-        return 'n/a'
+        if (showHash) {
+          return '0 H'
+        }
+        return '0'
       }
       const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1000)))
       if (i === 0) {

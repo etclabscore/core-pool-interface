@@ -1,0 +1,28 @@
+{
+    "menu": {
+        "home": "Home",
+        "blocks": "Pool Blocks",
+        "payments": "Payments",
+        "help": "Help",
+        "miningPool": "mining pool",
+        "minimize": "Minimize"
+    },
+    "info": {
+        "pool": {
+            "title": "POOL",
+            "hashrate": "Hashrate",
+            "lastBlock": "Last Block",
+            "miners": "Online",
+            "fee": "Fee"
+        },
+        "network": {
+            "title": "NETWORK",
+            "height": "Block Height",
+            "difficulty": "Difficulty",
+            "hashrate": "Hashrate",
+            "epoch": "Epoch",
+            "dag": "DAG"
+        },
+        "hide": "Hide"
+    }
+}

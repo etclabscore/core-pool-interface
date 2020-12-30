@@ -49,6 +49,8 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    // https://i18n.nuxtjs.org/
+    'nuxt-i18n'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -61,6 +63,44 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: config.theme
+  },
+
+  // i18n module configuration (https://i18n.nuxtjs.org/basic-usage)
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English'
+      }
+      /*{
+        code: 'es',
+        name: 'Español'
+      },
+      {
+        code: 'ru',
+        name: 'Pусский'
+      },
+      {
+        code: 'zh',
+        name: '中文'
+      }*/
+    ],
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'core_pool_i18n_redirected',
+      fallbackLocale: 'en'
+    },
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./i18n/en.json'),
+        // es: require('./i18n/es.json'),
+        // ru: require('./i18n/ru.json'),
+        // zh: require('./i18n/zh.json')
+      }
+    }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
