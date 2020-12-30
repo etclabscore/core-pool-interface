@@ -2,7 +2,7 @@
   <v-row justify="center" align="center" no-gutters class="pa-0">
     <v-col cols="12" class="pa-0">
       <v-card flat tile class="mb-0">
-        <v-img height="200" :src="require('~/static/banner.jpg')" gradient="to top right, rgba(0,0,0,.9), rgba(255,255,201,.33)" class="white--text align-end">
+        <v-img height="200" :src="require('~/static/' + config.banner)" gradient="to top right, rgba(0,0,0,.9), rgba(255,255,201,.33)" class="white--text align-end">
           <v-card-title>
             <v-list style="background-color:rgba(0,0,0,0);">
               <v-list-item style="background-color:rgba(0,0,0,0);">
