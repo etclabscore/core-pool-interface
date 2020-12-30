@@ -18,11 +18,8 @@ Copy ~/params/example.config.json to ~/params/config.json
     "url": "https://expedition.dev",
     "type": "expedition"
   },
-  "symbol": "ETC",
   "poolFee": "1",
   "payoutThreshold": "0.5",
-  "blocktime": 13.2,
-  "epochLength": 60000,
   "theme": {
     "dark": true,
     "themes": {
@@ -37,15 +34,19 @@ Copy ~/params/example.config.json to ~/params/config.json
       },
       "light": {
         "primary": "#1976D2",
-        "secondary": "#424242",
+        "secondary": "#F5F5F5",
         "accent": "#82B1FF",
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
         "warning": "#FFC107"
       }
+    },
+    "options": { 
+      "customProperties": true 
     }
-  }
+  },
+  "extraPools": []
 }
 ```
 
@@ -55,11 +56,13 @@ To avoid future merge conflicts dont replace the existing icon/image files, add 
 
 ## network
 
-`classic` or `mordor`.
+`classic`, `mordor`, `ethereum` or `ubiq`
+
+blocktimes, epochLength, icon, title, algo are set based on network, these values can be found in ~/params/networks.json
 
 ## explorer type
 
-`expedition` or `blockscout`
+`expedition`, `blockscout`, `etherscan` or `spectrum`
 
 ## theme
  
@@ -68,3 +71,17 @@ To avoid future merge conflicts dont replace the existing icon/image files, add 
 Colors for each theme (dark/light) can be configured via config.json, see: https://vuetifyjs.com/en/features/theme for additional options.
 
 Addtional customizations/overrides can be done via ~/assets/variables.scss, see: https://vuetifyjs.com/en/features/sass-variables/ for more info.
+
+## extraPools
+
+Custom menu links to additional pool instances can easily be configured via the config, simply define any additional pools as follows
+
+```
+"extraPools": [
+    { "network": "ethereum", "url": "https://ethereum.pool.octano.dev", "type": "PROP" },
+    { "network": "ubiq", "url": "https://ubiq.pool.octano.dev", "type": "PPLNS" },
+    { "network": "classic", "url": "https://classic.pool.octano.dev", "type": "SOLO" }
+]
+```
+
+Network must be a supported support key. Define any new networks in ~/params/networks.json (and submit a PR).
