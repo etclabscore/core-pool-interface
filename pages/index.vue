@@ -15,24 +15,23 @@
                 </v-list-item-content>
               </v-list-item>
             </v-list>
-            <v-spacer />
-            <v-list style="background-color:rgba(0,0,0,0);">
-                <v-list-item style="background-color:rgba(0,0,0,0);">
-                  <v-list-item-avatar>
-                    <img :src="require('~/static/' + config.network.icon)"/>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ config.network.title }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ config.network.algo }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
           </v-card-title>
         </v-img>
         <v-alert v-if="network.testnet" outlined text dismissible tile type="warning" class="w-100 mb-0">
           This pool is configured for the {{ network.title }}. The {{ network.symbol }} rewarded is testnet {{ network.symbol }}.
         </v-alert>
         <v-card-text class="py-1">
+          <v-list style="background-color:rgba(0,0,0,0);">
+            <v-list-item style="background-color:rgba(0,0,0,0);">
+              <v-list-item-avatar>
+                <img :src="require('~/static/' + config.network.icon)"/>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>{{ config.network.title }}</v-list-item-title>
+                <v-list-item-subtitle>{{ config.network.algo }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
           <ul>
             <li>Min. payout threshold: {{ config.payoutThreshold }} {{ config.network.symbol }}.</li>
             <li>{{ config.mode }} stable and profitable pool with regular payouts.</li>
