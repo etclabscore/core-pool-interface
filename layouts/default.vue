@@ -26,6 +26,15 @@
       </v-list>
       <template v-slot:append>
         <v-list>
+          <v-list-item v-for="(item, index) in stats.env.extraPools" :key="index" :href="item.url" target="_blank">
+            <v-list-item-action size=24>
+              <img :src="require('~/static/' + stats.networks[item.network].icon)" style="width:24px;max-height:24px;"/>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ stats.networks[item.network].title }}</v-list-item-title>
+              <v-list-item-subtitle>{{ item.type }} mining pool</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item @click.stop="miniVariant = !miniVariant">
             <v-list-item-action>
               <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
@@ -105,7 +114,7 @@
         <v-subheader text-right>NETWORK</v-subheader>
         <v-list-item class="stats-item ma-1">
           <v-list-item-avatar>
-            <img :src="require('~/static/' + stats.env.network.icon)"></img>
+            <img :src="require('~/static/' + stats.env.network.icon)" />
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ stats.env.network.title }}</v-list-item-title>

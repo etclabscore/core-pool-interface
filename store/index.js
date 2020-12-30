@@ -22,8 +22,10 @@ export const state = () => ({
     poolFee: config.poolFee,
     payoutThreshold: config.payoutThreshold,
     blocktime: TARGET_TIME,
-    epochLength: EPOCH_LENGTH
+    epochLength: EPOCH_LENGTH,
+    extraPools: config.extraPools
   },
+  networks: networks,
   minersOnline: 0,
   poolHashRate: 0,
   lastBlockFound: 0,
@@ -70,7 +72,6 @@ export const actions = {
   async stats({commit}) {
     try {
       const { data } = await axios.get(API_URL + '/stats')
-      // consola.log(data)
       if ( data ) {
         let info = {
           minersOnline: data.minersTotal,

@@ -38,5 +38,6 @@
     "options": { 
       "customProperties": true 
     }
-  }
+  },
+  "extraPools": []
 }
