@@ -7,16 +7,16 @@
             <thead>
               <tr>
                 <th class="text-left">
-                  Blocks
+                  {{ $t('pages.blocks.blocks') }}
                 </th>
                 <th class="text-left">
-                  Shares/Diff
+                  {{ $t('pages.blocks.shares') }}
                 </th>
                 <th class="text-left">
-                  Uncle Rate
+                  {{ $t('pages.blocks.uncleRate') }}
                 </th>
                 <th class="text-left">
-                  Orphan Rate
+                  {{ $t('pages.blocks.orphanRate') }}
                 </th>
               </tr>
             </thead>
@@ -37,19 +37,19 @@
           background-color="transparent"
           grow
         >
-          <v-tab>Blocks <v-chip label small color="success" class="ml-2">{{blocks.maturedTotal}}</v-chip></v-tab>
-          <v-tab>Immature<v-chip label small color="warning" class="ml-2">{{blocks.immatureTotal}}</v-chip></v-tab>
-          <v-tab>New Blocks<v-chip label small color="info" class="ml-2">{{blocks.candidatesTotal}}</v-chip></v-tab>
+          <v-tab>{{ $t('pages.blocks.blocks') }}<v-chip label small color="success" class="ml-2">{{blocks.maturedTotal}}</v-chip></v-tab>
+          <v-tab>{{ $t('pages.blocks.immature') }}<v-chip label small color="warning" class="ml-2">{{blocks.immatureTotal}}</v-chip></v-tab>
+          <v-tab>{{ $t('pages.blocks.newBlocks') }}<v-chip label small color="info" class="ml-2">{{blocks.candidatesTotal}}</v-chip></v-tab>
         </v-tabs>
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <blocks-table :blocks="matured" :config="config" no-data-text="No matured blocks" />
+            <blocks-table :blocks="matured" :config="config" :no-data-text="$t('pages.blocks.noMatured')" />
           </v-tab-item>
           <v-tab-item>
-            <blocks-table :blocks="immature" :config="config" no-data-text="No immature blocks" />
+            <blocks-table :blocks="immature" :config="config" :no-data-text="$t('pages.blocks.noImmature')" />
           </v-tab-item>
           <v-tab-item>
-            <blocks-table :blocks="candidates" :config="config" no-data-text="No pending blocks" />
+            <blocks-table :blocks="candidates" :config="config" :no-data-text="$t('pages.blocks.noPending')" />
           </v-tab-item>
         </v-tabs-items>
       </v-card>

@@ -38,6 +38,28 @@
             "noMiners": "No miners connected",
             "minersPerPage": "Miners per page",
             "search": "Search by account"
+        },
+        "blocks": {
+            "blocks": "Blocks",
+            "shares": "Shares/Diff",
+            "uncleRate": "Uncle Rate",
+            "orphanRate": "Orphan Rate",
+            "immature": "Immature",
+            "newBlocks": "New Blocks",
+            "noMatured": "No matured blocks",
+            "noImmature": "No immature blocks",
+            "noPending": "No pending blocks",
+            "blocksPerPage": "Blocks per page",
+            "search": "Search by number or hash",
+            "blockNumber": "Block Number",
+            "blockHash": "Block Hash",
+            "timeFound": "Time Found",
+            "variance": "Variance",
+            "reward": "Reward",
+            "type": "Type",
+            "block": "Block",
+            "uncle": "Uncle",
+            "orphan": "Orphan"
         }
     }
 }

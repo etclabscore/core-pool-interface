@@ -4,7 +4,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        :label="$t('pages.blocks.search')"
         single-line
         outlined
         hide-details
@@ -14,10 +14,10 @@
       dense
       :headers="headers"
       :items="blocks"
-      :footer-props="{itemsPerPageText: 'Blocks per page', itemsPerPageOptions: [25, 50, 100]}"
+      :footer-props="{itemsPerPageText: $t('pages.blocks.blocksPerPage'), itemsPerPageOptions: [25, 50, 100]}"
       :items-per-page="25"
       :search="search"
-      no-data-text="No matured blocks"
+      :no-data-text="noDataText"
     >
       <template v-slot:item.height="{ item }">
         {{ nf.format(item.height) }}
@@ -73,19 +73,19 @@ export default {
       search: null,
       headers: [
         {
-          text: 'Block Number',
+          text: this.$t('pages.blocks.blockNumber'),
           align: 'start',
           value: 'height'
         },
-        { text: 'Block Hash', value: 'hash' },
-        { text: 'Time Found', value: 'timestamp' },
-        { text: 'Variance', value: 'shares'},
+        { text: this.$t('pages.blocks.blockHash'), value: 'hash' },
+        { text: this.$t('pages.blocks.timeFound'), value: 'timestamp' },
+        { text: this.$t('pages.blocks.variance'), value: 'shares'},
         { 
-          text: 'Reward (' + this.config.symbol + ')', 
+          text: this.$t('pages.blocks.reward') + ' (' + this.config.symbol + ')', 
           align: 'right',
           value: 'reward'
         },
-        { text: 'Type', value: 'uncle', align: 'right' },
+        { text: this.$t('pages.blocks.type'), value: 'uncle', align: 'right' },
       ],
       dtf: new Intl.DateTimeFormat('en', {
         year: 'numeric',
@@ -101,11 +101,11 @@ export default {
   methods: {
     formatBlockType(block) {
       if (!block.uncle && !block.orphan) {
-        return { color:'success', text: 'Block' }
+        return { color:'success', text: this.$t('pages.blocks.block') }
       } else if (block.uncle) {
-        return { color:'warning', text: 'Uncle' }
+        return { color:'warning', text: this.$t('pages.blocks.uncle') }
       } else {
-        return { color:'error', text: 'Orphan' }
+        return { color:'error', text: this.$t('pages.blocks.orphan') }
       }
     },
     formatReward(wei) {
