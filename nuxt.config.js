@@ -19,7 +19,7 @@ export default {
       { hid: 'description', name: 'description', content: config.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: config.favicon }
+      { rel: 'icon', type: 'image/x-icon', href: '/' + config.favicon }
     ]
   },
 
