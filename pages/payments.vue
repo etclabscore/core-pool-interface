@@ -6,11 +6,11 @@
           v-model="tab"
           background-color="transparent"
         >
-          <v-tab>Latest Payouts</v-tab>
+          <v-tab>{{ $t('pages.payments.latestPayments') }}</v-tab>
         </v-tabs>
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <payments-table :payments="payments" :config="config" no-data-text="No payments" />
+            <payments-table :payments="payments" :config="config" :no-data-text="$t('pages.payments.noPayments')" />
           </v-tab-item>
         </v-tabs-items>
       </v-card>

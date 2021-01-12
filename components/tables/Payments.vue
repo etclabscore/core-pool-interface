@@ -4,7 +4,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        :label="$t('pages.payments.search')"
         single-line
         outlined
         hide-details
@@ -14,10 +14,10 @@
       dense
       :headers="headers"
       :items="payments"
-      :footer-props="{itemsPerPageText: 'Payments per page', itemsPerPageOptions: [25, 50, 100]}"
+      :footer-props="{itemsPerPageText: $t('pages.payments.paymentsPerPage'), itemsPerPageOptions: [25, 50, 100]}"
       :items-per-page="25"
       :search="search"
-      no-data-text="No payments"
+      :no-data-text="$t('pages.payments.noPayments')"
     >
       <template v-slot:item.timestamp="{ item }">
         {{ dtf.format(item.timestamp*1000) }}
@@ -54,13 +54,13 @@ export default {
       default() {
         return [
           {
-            text: 'Time',
+            text: this.$t('pages.payments.time'),
             align: 'start',
             value: 'timestamp'
           },
-          { text: 'Address', value: 'address' },
-          { text: 'Tx ID', value: 'tx'},
-          { text: 'Amount', value: 'amount', align: 'right' },
+          { text: this.$t('pages.payments.address'), value: 'address' },
+          { text: this.$t('pages.payments.txid'), value: 'tx'},
+          { text:this.$t('pages.payments.amount'), value: 'amount', align: 'right' },
         ]
       }
     },
@@ -73,7 +73,7 @@ export default {
     noDataText: {
       type: String,
       default() {
-        return "No payments"
+        return this.$t('pages.payments.noPayments')
       }
     },
   },
@@ -82,7 +82,7 @@ export default {
       search: null,
       symbol: this.config.symbol,
       nf: new Intl.NumberFormat("en", {}),
-      dtf: new Intl.DateTimeFormat('en', { // ( ͡° ͜ʖ ͡°)
+      dtf: new Intl.DateTimeFormat('en', {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',

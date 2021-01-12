@@ -60,6 +60,16 @@
             "block": "Block",
             "uncle": "Uncle",
             "orphan": "Orphan"
+        },
+        "payments": {
+            "latestPayments": "Latest Payments",
+            "noPayments": "No payments found",
+            "paymentsPerPage": "Payments per page",
+            "search": "Search by address or txn hash",
+            "time": "Time",
+            "address": "Address",
+            "txid": "Tx ID",
+            "amount": "Amount"
         }
     }
 }
