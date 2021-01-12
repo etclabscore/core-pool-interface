@@ -22,8 +22,6 @@ export const state = () => ({
     explorer: config.explorer,
     poolFee: config.poolFee,
     payoutThreshold: config.payoutThreshold,
-    blocktime: TARGET_TIME,
-    epochLength: EPOCH_LENGTH,
     extraPools: config.extraPools,
     mode: config.mode,
   },

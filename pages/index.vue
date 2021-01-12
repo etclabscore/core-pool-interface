@@ -53,6 +53,7 @@
         </v-card-title>
         <v-data-table
           dense
+          flat
           :headers="headers"
           :items="miners"
           :search="search"
