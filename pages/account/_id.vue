@@ -8,7 +8,7 @@
               <v-icon>mdi-cloud-outline</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>IMMATURE BAL.</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.immatureBal') }}</v-list-item-title>
               <v-list-item-subtitle>
                 {{ formatEther(data.stats.immature) }} {{ config.symbol }}
               </v-list-item-subtitle>
@@ -19,7 +19,7 @@
               <v-icon>mdi-bank</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>PENDING BAL.</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.pendingBal') }}</v-list-item-title>
               <v-list-item-subtitle>
                 {{ formatEther(data.stats.balance) }} {{ config.symbol }}
               </v-list-item-subtitle>
@@ -30,7 +30,7 @@
               <v-icon>mdi-cash</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>TOTAL PAID</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.totalPaid') }}</v-list-item-title>
               <v-list-item-subtitle>{{ formatEther(data.stats.paid) }} {{ config.symbol }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -43,7 +43,7 @@
               <v-icon>mdi-cube-send</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>LAST SHARE</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.lastShare') }}</v-list-item-title>
               <v-list-item-subtitle>{{ formatTimeSince(data.stats.lastShare) }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -52,7 +52,7 @@
               <v-icon>mdi-gauge-full</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>HASHRATE (30min)</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.hashrate30min') }}</v-list-item-title>
               <v-list-item-subtitle>{{ formatHashrate(data.currentHashrate, true) }}  </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -61,7 +61,7 @@
               <v-icon>mdi-gauge-full</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>HASHRATE (3h)</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.hashrate3hour') }}</v-list-item-title>
               <v-list-item-subtitle>{{ formatHashrate(data.hashrate, true) }}  </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -74,7 +74,7 @@
               <v-icon>mdi-cube-scan</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>BLOCKS FOUND</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.blocksFound') }}</v-list-item-title>
               <v-list-item-subtitle>{{ nf.format(data.stats.blocksFound) }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -83,7 +83,7 @@
               <v-icon>mdi-pickaxe</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>WORKERS ONLINE</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.workersOnline') }}</v-list-item-title>
               <v-list-item-subtitle>{{data.workersOnline }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -92,7 +92,7 @@
               <v-icon>mdi-clock-outline</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>YOUR ROUND SHARE</v-list-item-title>
+              <v-list-item-title>{{ $t('pages.account.roundShare') }}</v-list-item-title>
               <v-list-item-subtitle>{{ data.roundShares }}% </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -100,12 +100,10 @@
       </v-col>
     </v-row>
     <v-alert tile dismissible type="info">
-      Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.
-There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.
-Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs. 
+      {{ $t('pages.account.info') }}
     </v-alert>
     <v-alert tile dismissible type="info">
-      Your bulk stats JSON API URL:
+      {{ $t('pages.account.jsonApi') }}
       <a
         :href="config.api + '/accounts/0xda904bc07fd95e39661941b3f6daded1b8a38c71'"
         target="_blank"
@@ -116,10 +114,10 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
     </v-alert>
     <v-tabs grow v-model="tab">
       <v-tab>
-        Workers <v-chip label x-small class="ml-2">{{ data.workersTotal }}</v-chip>
+        {{ $t('pages.account.workers') }}<v-chip label x-small class="ml-2">{{ data.workersTotal }}</v-chip>
       </v-tab>
       <v-tab>
-        Payouts <v-chip label x-small class="ml-2">{{ data.paymentsTotal }}</v-chip>
+        {{ $t('pages.account.payments') }}<v-chip label x-small class="ml-2">{{ data.paymentsTotal }}</v-chip>
       </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
@@ -128,10 +126,10 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">ID</th>
-                <th class="text-left">Hashrate (rough, short average)</th>
-                <th class="text-left">Hashrate (accurate, long average)</th>
-                <th class="text-left">Last Share</th>
+                <th class="text-left">{{ $t('pages.account.worker.id') }}</th>
+                <th class="text-left">{{ $t('pages.account.worker.hashrateShort') }}</th>
+                <th class="text-left">{{ $t('pages.account.worker.hashrateLong') }}</th>
+                <th class="text-left">{{ $t('pages.account.worker.lastShare') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -146,7 +144,7 @@ Dead (sick) workers will be highlighted in a table of workers if they didn't sub
         </v-simple-table>
       </v-tab-item>
       <v-tab-item >
-        <payments-table :payments="data.payments" :headers="payoutHeaders" :config="config" no-data-text="No payments" />
+        <payments-table :payments="data.payments" :headers="payoutHeaders" :config="config" :no-data-text="$t('pages.payments.noPayments')" />
       </v-tab-item >
     </v-tabs-items>
   </v-col>
@@ -191,12 +189,12 @@ export default {
       },
       payoutHeaders: [
         {
-          text: 'Time',
+          text: this.$t('pages.payments.time'),
           align: 'start',
           value: 'timestamp'
         },
-        { text: 'Tx ID', value: 'tx'},
-        { text: 'Amount', value: 'amount', align: 'right' },
+        { text: this.$t('pages.payments.txid'), value: 'tx'},
+        { text: this.$t('pages.payments.amount'), value: 'amount', align: 'right' },
       ],
       nf: new Intl.NumberFormat("en", {})
     }
