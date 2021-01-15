@@ -1,0 +1,96 @@
+{
+  "menu": {
+      "home": "Casa",
+      "blocks": "Bloques de grupo",
+      "payments": "Pagos",
+      "help": "Ayuda",
+      "miningPool": "grupo de minería",
+      "minimize": "Minimizar"
+  },
+  "info": {
+      "pool": {
+          "title": "GRUPO",
+          "hashrate": "Velocidad",
+          "lastBlock": "Último Bloque",
+          "miners": "En línea",
+          "fee": "Cuota"
+      },
+      "network": {
+          "title": "RED",
+          "height": "Altura del bloque",
+          "difficulty": "Dificultad",
+          "hashrate": "Velocidad",
+          "epoch": "Época",
+          "dag": "DAG"
+      },
+      "hide": "Esconder"
+  },
+  "pages": {
+      "home": {
+          "testnetAlert": "Este grupo está configurado para el {title}. El {symbol} premiado es testnet {symbol}.",
+          "minimumPayout": "Min. umbral de pago: {threshold} {symbol}.",
+          "mode": "{mode} Grupo estable y rentable con pagos regulares.",
+          "poweredBy": "Energizado por",
+          "protocols": "Compatible con Getwork y Stratum.",
+          "account": "Cuenta",
+          "hashrate": "Velocidad",
+          "lastBeat": "último latido",
+          "noMiners": "No hay mineros conectados",
+          "minersPerPage": "Mineros por página",
+          "search": "Buscar por cuenta"
+      },
+      "blocks": {
+          "blocks": "Bloques",
+          "shares": "Acciones/Dificultad",
+          "uncleRate": "Tío ocurrencia",
+          "orphanRate": "Ocurrencia huérfana",
+          "immature": "Inmaduro",
+          "newBlocks": "Nuevos bloques",
+          "noMatured": "Sin bloques maduros",
+          "noImmature": "Sin bloques inmaduros",
+          "noPending": "Sin bloques pendientes",
+          "blocksPerPage": "Bloques por página",
+          "search": "Buscar por número o hash",
+          "blockNumber": "Número de bloque",
+          "blockHash": "Bloquear huella digital",
+          "timeFound": "Tiempo encontrado",
+          "variance": "Diferencia",
+          "reward": "Recompensa",
+          "type": "Tipo",
+          "block": "Bloquear",
+          "uncle": "Tío",
+          "orphan": "Huérfano"
+      },
+      "payments": {
+          "latestPayments": "Últimos pagos",
+          "noPayments": "No se encontraron pagos",
+          "paymentsPerPage": "Pagos por página",
+          "search": "Buscar por dirección o hash txn",
+          "time": "Hora",
+          "address": "la dirección",
+          "txid": "ID de transacción",
+          "amount": "Cantidad"
+      },
+      "account": {
+          "immatureBal": "EQUILIBRIO INMATURO",
+          "pendingBal": "EQUILIBRIO PENDIENTE",
+          "totalPaid": "TOTAL PAGADO",
+          "lastShare": "ÚLTIMA COMPARTIR",
+          "hashrate30min": "VELOCIDAD (30min)",
+          "hashrate3hour": "VELOCIDAD (3h)",
+          "blocksFound": "BLOQUES ENCONTRADOS",
+          "workersOnline": "TRABAJADORES EN LINEA",
+          "roundShare": "SU PARTICIPACIÓN RONDA",
+          "info": "Su tasa de hash promedio se ajustará sin problemas hasta que tenga acciones para completar la ventana de estimación. Hay dos ventanas, larga y corta, la primera es igual a unos 30 minutos y la ventana larga suele ser igual a 3 horas. Los trabajadores muertos (enfermos) se destacarán en una tabla de trabajadores si no enviaron una participación durante la mitad del período corto, para que pueda realizar el mantenimiento de sus equipos.",
+          "jsonApi": "Su URL de API JSON de estadísticas masivas:",
+          "workers": "Trabajadores",
+          "payments": "Pagos",
+          "worker": {
+              "id": "ID",
+              "hashrateShort": "Velocidad (aproximado, promedio corto)",
+              "hashrateLong": "Velocidad (preciso, promedio largo)",
+              "lastShare": "Último compartir"
+          }
+      }
+  }
+}
