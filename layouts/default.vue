@@ -61,6 +61,13 @@
         {{ title }}
       </v-toolbar-title>
       <v-spacer />
+      <v-btn
+        icon
+        class="mr-1"
+        @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark"
+      >
+        <v-icon>mdi-theme-light-dark</v-icon>
+      </v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -69,7 +76,7 @@
             v-on="on"
             class="mr-1"
           >
-            <v-icon small>mdi-translate</v-icon>
+            <v-icon>mdi-translate</v-icon>
           </v-btn>
         </template>
         <v-list>
@@ -213,17 +220,6 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
       <v-spacer />
-      <v-switch
-        color="primary"
-        small
-        v-model="darkmode"
-        inset
-        flat
-        class="mx-0 my-auto pa-0"
-        style="height:24px;"
-        :append-icon="darkmode ? 'mdi-moon-waxing-crescent' : 'mdi-weather-sunny'"
-        prepend-icon="mdi-theme-light-dark"
-      ></v-switch>
     </v-footer>
   </v-app>
 </template>
