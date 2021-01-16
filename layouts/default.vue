@@ -61,6 +61,28 @@
         {{ title }}
       </v-toolbar-title>
       <v-spacer />
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+            class="mr-1"
+          >
+            <v-icon small>mdi-translate</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in locales"
+            :key="index"
+            :disabled="item.code === $i18n.locale"
+            @click="$i18n.setLocale(item.code)"
+          >
+            <v-list-item-title>{{ item.name }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight" />
     </v-app-bar>
     <v-navigation-drawer
@@ -259,6 +281,9 @@ export default {
     },
     now() {
       return this.$store.state.now
+    },
+    locales() {
+      return this.$i18n.locales
     },
     darkmode: {
       get() {
