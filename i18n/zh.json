@@ -1,0 +1,96 @@
+{
+  "menu": {
+      "home": "家",
+      "blocks": "池块",
+      "payments": "付款方式",
+      "help": "救命",
+      "miningPool": "矿池",
+      "minimize": "最小化"
+  },
+  "info": {
+      "pool": {
+          "title": "泳池",
+          "hashrate": "速度",
+          "lastBlock": "最后一块",
+          "miners": "线上",
+          "fee": "费用"
+      },
+      "network": {
+          "title": "网络",
+          "height": "块高",
+          "difficulty": "困难",
+          "hashrate": "速度",
+          "epoch": "时代",
+          "dag": "记忆"
+      },
+      "hide": "隐藏"
+  },
+  "pages": {
+      "home": {
+          "testnetAlert": "已为{title}配置了该池。 奖励的{symbol}是测试网{symbol}。",
+          "minimumPayout": "最低付款门槛：{threshold} {symbol}。",
+          "mode": "{mode}稳定且有利可图的定期付款池。",
+          "poweredBy": "供电",
+          "protocols": "支持Getwork和Stratum。",
+          "account": "帐户",
+          "hashrate": "速度",
+          "lastBeat": "最后一击",
+          "noMiners": "未连接矿工",
+          "minersPerPage": "每页矿工数",
+          "search": "按账户搜索"
+      },
+      "blocks": {
+          "blocks": "积木",
+          "shares": "股份/难度",
+          "uncleRate": "叔叔率",
+          "orphanRate": "孤儿率",
+          "immature": "不成熟",
+          "newBlocks": "新街区",
+          "noMatured": "没有成熟的街区",
+          "noImmature": "没有未成熟的块",
+          "noPending": "没有待处理的区块",
+          "blocksPerPage": "每页块数",
+          "search": "按数字或哈希搜索",
+          "blockNumber": "块号",
+          "blockHash": "区块哈希",
+          "timeFound": "发现时间",
+          "variance": "方差",
+          "reward": "奖励",
+          "type": "类型",
+          "block": "块",
+          "uncle": "叔叔",
+          "orphan": "孤儿"
+      },
+      "payments": {
+          "latestPayments": "最新付款",
+          "noPayments": "找不到付款",
+          "paymentsPerPage": "每页付款",
+          "search": "按地址或TXN哈希搜索",
+          "time": "时间",
+          "address": "地址",
+          "txid": "交易编号",
+          "amount": "量"
+      },
+      "account": {
+          "immatureBal": "不成熟的平衡",
+          "pendingBal": "待处理余额",
+          "totalPaid": "总支付",
+          "lastShare": "最后分享",
+          "hashrate30min": "苛刻（30分钟）",
+          "hashrate3hour": "赫希拉特（3小时）",
+          "blocksFound": "发现的块",
+          "workersOnline": "在线工作人员",
+          "roundShare": "您的股份",
+          "info": "您的平均哈希率将被平滑地调整，直到您有要完全满足估计值的份额为止。有两个窗口，长和短，首先等于大约30分钟，长窗口通常等于3小时。如果死亡（病残）工人未在短窗口的1/2时间内提交份额，则会在工人表中突出显示它们，因此您可以进行钻机维护。",
+          "jsonApi": "您的批量统计信息JSON API URL:",
+          "workers": "工作人员",
+          "payments": "付款方式",
+          "worker": {
+              "id": "ID",
+              "hashrateShort": "哈希率（粗略，短期平均）",
+              "hashrateLong": "哈希率（准确，长期平均）",
+              "lastShare": "最后分享"
+          }
+      }
+  }
+}
