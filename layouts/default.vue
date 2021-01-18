@@ -233,28 +233,6 @@ export default {
       drawer: true,
       drawerRight: true,
       fixed: true,
-      items: [
-        {
-          icon: 'mdi-home',
-          title: this.$t('menu.home'),
-          to: '/'
-        },
-        {
-          icon: 'mdi-cube-outline',
-          title: this.$t('menu.blocks'),
-          to: '/blocks'
-        },
-        {
-          icon: 'mdi-send',
-          title: this.$t('menu.payments'),
-          to: '/payments'
-        },
-        {
-          icon: 'mdi-help-circle-outline',
-          title: this.$t('menu.help'),
-          to: '/help'
-        }
-      ],
       miniVariant: true,
       title: this.$store.state.env.title,
       logo: this.$store.state.env.logo,
@@ -288,6 +266,30 @@ export default {
       set() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark
       }
+    },
+    items() {
+      return [
+        {
+          icon: 'mdi-home',
+          title: this.$t('menu.home'),
+          to: '/'
+        },
+        {
+          icon: 'mdi-cube-outline',
+          title: this.$t('menu.blocks'),
+          to: '/blocks'
+        },
+        {
+          icon: 'mdi-send',
+          title: this.$t('menu.payments'),
+          to: '/payments'
+        },
+        {
+          icon: 'mdi-help-circle-outline',
+          title: this.$t('menu.help'),
+          to: '/help'
+        }
+      ]
     }
   },
   methods: {
