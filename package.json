@@ -20,7 +20,7 @@
     "nuxt-i18n": "^6.18.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.11.2",
+    "@nuxtjs/vuetify": "^1.11.3",
     "@vue/test-utils": "^1.1.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.5.0",
