@@ -20,8 +20,8 @@
           "height": "块高",
           "difficulty": "难度",
           "hashrate": "哈希率",
-          "epoch": "Epoch",//no need to translate
-          "dag": "DAG" // DAG is a term, no need to translate
+          "epoch": "Epoch",
+          "dag": "DAG"
       },
       "hide": "隐藏"
   },
