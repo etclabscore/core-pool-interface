@@ -75,11 +75,11 @@ export default {
       {
         code: 'es',
         name: 'Español'
-      }
-      /*{
+      },
+      {
         code: 'ru',
         name: 'Pусский'
-      }*/,
+      },
       {
         code: 'zh',
         name: '中文'
@@ -97,7 +97,7 @@ export default {
       messages: {
         en: require('./i18n/en.json'),
         es: require('./i18n/es.json'),
-        // ru: require('./i18n/ru.json'),
+        ru: require('./i18n/ru.json'),
         zh: require('./i18n/zh.json')
       }
     }
