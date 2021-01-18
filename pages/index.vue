@@ -83,7 +83,12 @@ import { formatDistance, formatDistanceToNow } from 'date-fns'
 export default {
   data () {
     return {
-      headers: [
+      search: "",
+    }
+  },
+  computed: {
+    headers() {
+      return [
         {
           text: this.$t('pages.home.account'),
           align: 'start',
@@ -95,11 +100,8 @@ export default {
           align: 'right',
           value: 'lastBeat'
         },
-      ],
-      search: "",
-    }
-  },
-  computed: {
+      ]
+    },
     miners() {
       const obj = this.$store.state.miners
       let arr = []
