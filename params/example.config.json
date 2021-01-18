@@ -41,5 +41,9 @@
       "customProperties": true 
     }
   },
+  "i18n": {
+    "default": "en",
+    "fallback": "en"
+  },
   "extraPools": []
 }

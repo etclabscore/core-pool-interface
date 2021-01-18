@@ -89,11 +89,13 @@ export default {
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'core_pool_i18n_redirected',
-      fallbackLocale: 'en'
+      fallbackLocale: config.i18n.fallback || "en",
+      alwaysRedirect: true,
+      onlyOnRoot: true
     },
-    defaultLocale: 'en',
+    defaultLocale: config.i18n.default || "en",
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: config.i18n.fallback || "en",
       messages: {
         en: require('./i18n/en.json'),
         es: require('./i18n/es.json'),
