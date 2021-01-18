@@ -71,7 +71,20 @@ export default {
   data () {
     return {
       search: null,
-      headers: [
+      dtf: new Intl.DateTimeFormat('en', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      }),
+      nf: new Intl.NumberFormat("en", {})
+    }
+  },
+  computed: {
+    headers() {
+      return [
         {
           text: this.$t('pages.blocks.blockNumber'),
           align: 'start',
@@ -86,16 +99,7 @@ export default {
           value: 'reward'
         },
         { text: this.$t('pages.blocks.type'), value: 'uncle', align: 'right' },
-      ],
-      dtf: new Intl.DateTimeFormat('en', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-      }),
-      nf: new Intl.NumberFormat("en", {})
+      ]
     }
   },
   methods: {
