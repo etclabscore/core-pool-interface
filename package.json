@@ -17,7 +17,7 @@
     "core-js": "^3.10.1",
     "date-fns": "^2.20.1",
     "nuxt": "^2.15.4",
-    "nuxt-i18n": "^6.18.0"
+    "nuxt-i18n": "^6.24.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",
