@@ -9,8 +9,8 @@
   "stratum": "127.0.0.1:8008",
   "network": "classic",
   "explorer": {
-    "url": "https://expedition.dev",
-    "type": "expedition"
+    "url": "https://blockscout.com",
+    "type": "blockscout"
   },
   "poolFee": "1",
   "payoutThreshold": "0.5",
@@ -25,7 +25,8 @@
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
-        "warning": "#FFC107"
+        "warning": "#FFC107",
+        "borders": "#2E2E2E"
       },
       "light": {
         "primary": "#1976D2",
@@ -34,11 +35,12 @@
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
-        "warning": "#FFC107"
+        "warning": "#FFC107",
+        "borders": "#E1E1E1"
       }
     },
-    "options": { 
-      "customProperties": true 
+    "options": {
+      "customProperties": true
     }
   },
   "i18n": {
