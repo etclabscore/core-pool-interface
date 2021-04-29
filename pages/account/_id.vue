@@ -196,7 +196,7 @@ export default {
         { text: this.$t('pages.payments.txid'), value: 'tx'},
         { text: this.$t('pages.payments.amount'), value: 'amount', align: 'right' },
       ],
-      nf: new Intl.NumberFormat("en", {})
+      nf: new Intl.NumberFormat(this.locale, {})
     }
   },
   created() {
@@ -208,6 +208,9 @@ export default {
     },
     config() {
       return this.$store.state.env
+    },
+    locale() {
+      return this.$i18n.locale
     }
   },
   methods: {

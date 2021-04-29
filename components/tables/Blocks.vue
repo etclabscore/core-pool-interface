@@ -25,7 +25,7 @@
       <template v-slot:item.shares="{ item }">
         {{ nf.format(((item.shares/item.difficulty)*100).toFixed(0)) }}%
       </template>
-      <template v-slot:item.uncle="{ item }"> 
+      <template v-slot:item.uncle="{ item }">
         <v-chip label small :color="formatBlockType(item).color">{{ formatBlockType(item).text }}</v-chip>
       </template>
       <template v-slot:item.timestamp="{ item }">
@@ -79,7 +79,7 @@ export default {
         minute: 'numeric',
         second: 'numeric'
       }),
-      nf: new Intl.NumberFormat("en", {})
+      nf: new Intl.NumberFormat(this.locale, {})
     }
   },
   computed: {
@@ -93,13 +93,16 @@ export default {
         { text: this.$t('pages.blocks.blockHash'), value: 'hash' },
         { text: this.$t('pages.blocks.timeFound'), value: 'timestamp' },
         { text: this.$t('pages.blocks.variance'), value: 'shares'},
-        { 
-          text: this.$t('pages.blocks.reward') + ' (' + this.config.symbol + ')', 
+        {
+          text: this.$t('pages.blocks.reward') + ' (' + this.config.symbol + ')',
           align: 'right',
           value: 'reward'
         },
         { text: this.$t('pages.blocks.type'), value: 'uncle', align: 'right' },
       ]
+    },
+    locale() {
+      return this.$i18n.locale
     }
   },
   methods: {

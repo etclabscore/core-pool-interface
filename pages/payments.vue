@@ -28,7 +28,7 @@ export default {
   data () {
     return {
       tab: null,
-      nf: new Intl.NumberFormat("en", {})
+      nf: new Intl.NumberFormat(this.locale, {})
     }
   },
   computed: {
@@ -37,7 +37,10 @@ export default {
     },
     config() {
       return this.$store.state.env
-    }
+    },
+    locale() {
+      return this.$i18n.locale
+    },
   }
 }
 </script>

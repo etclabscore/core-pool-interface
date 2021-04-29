@@ -81,8 +81,8 @@ export default {
     return {
       search: null,
       symbol: this.config.symbol,
-      nf: new Intl.NumberFormat("en", {}),
-      dtf: new Intl.DateTimeFormat('en', {
+      nf: new Intl.NumberFormat(this.locale, {}),
+      dtf: new Intl.DateTimeFormat(this.locale, {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
@@ -95,6 +95,9 @@ export default {
   computed: {
     now() {
       return this.$store.state.now
+    },
+    locale() {
+      return this.$i18n.locale
     },
   },
   methods: {

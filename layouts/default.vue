@@ -236,7 +236,7 @@ export default {
       miniVariant: true,
       title: this.$store.state.env.title,
       logo: this.$store.state.env.logo,
-      nf: new Intl.NumberFormat("en", {}),
+      nf: new Intl.NumberFormat(this.locale, {}),
       timer: {
         stats: null,
         miners: null
@@ -290,6 +290,9 @@ export default {
           to: '/help'
         }
       ]
+    },
+    locale() {
+      return this.$i18n.locale
     }
   },
   methods: {
