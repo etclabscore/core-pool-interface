@@ -24,20 +24,35 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <template v-slot:append>
+      <template #append>
         <v-list>
-          <v-list-item v-for="(item, index) in stats.env.extraPools" :key="index" :href="item.url" target="_blank">
-            <v-list-item-action size=24>
-              <img :src="require('~/static/' + stats.networks[item.network].icon)" style="width:24px;max-height:24px;"/>
+          <v-list-item
+            v-for="(item, index) in stats.env.extraPools"
+            :key="index"
+            :href="item.url"
+            target="_blank"
+          >
+            <v-list-item-action size="24">
+              <img
+                :src="require('~/static/' + stats.networks[item.network].icon)"
+                style="width: 24px; max-height: 24px"
+              />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ stats.networks[item.network].title }}</v-list-item-title>
-              <v-list-item-subtitle>{{ item.type }} {{ $t('menu.miningPool') }}</v-list-item-subtitle>
+              <v-list-item-title>{{
+                stats.networks[item.network].title
+              }}</v-list-item-title>
+              <v-list-item-subtitle
+                >{{ item.type }}
+                {{ $t('menu.miningPool') }}</v-list-item-subtitle
+              >
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click.stop="miniVariant = !miniVariant">
             <v-list-item-action>
-              <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+              <v-icon
+                >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
+              >
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>{{ $t('menu.minimize') }}</v-list-item-title>
@@ -46,16 +61,14 @@
         </v-list>
       </template>
     </v-navigation-drawer>
-    <v-app-bar
-      clipped-left
-      clipped-right
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon :class="{ 'd-xs-flex': true, 'd-md-none': drawer}" @click.stop="drawer = !drawer" />
+    <v-app-bar clipped-left clipped-right fixed app>
+      <v-app-bar-nav-icon
+        :class="{ 'd-xs-flex': true, 'd-md-none': drawer }"
+        @click.stop="drawer = !drawer"
+      />
       <v-spacer />
       <v-toolbar-title>
-        <v-avatar size=32>
+        <v-avatar size="32">
           <img :src="require('@/static/' + logo)" />
         </v-avatar>
         {{ title }}
@@ -69,13 +82,8 @@
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
       <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-            class="mr-1"
-          >
+        <template #activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" class="mr-1" v-on="on">
             <v-icon>mdi-translate</v-icon>
           </v-btn>
         </template>
@@ -107,8 +115,12 @@
             <v-icon>mdi-gauge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.pool.hashrate') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ formatHashrate(stats.poolHashRate, true) }}</v-list-item-subtitle>
+            <v-list-item-title>{{
+              $t('info.pool.hashrate')
+            }}</v-list-item-title>
+            <v-list-item-subtitle>{{
+              formatHashrate(stats.poolHashRate, true)
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -116,8 +128,12 @@
             <v-icon>mdi-clock-outline</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.pool.lastBlock') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ formatTimeSince(this.stats.lastBlockFound) }}</v-list-item-subtitle>
+            <v-list-item-title>{{
+              $t('info.pool.lastBlock')
+            }}</v-list-item-title>
+            <v-list-item-subtitle>{{
+              formatTimeSince(stats.lastBlockFound)
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -127,7 +143,9 @@
           <v-list-item-content>
             <v-list-item-title>{{ $t('info.pool.miners') }}</v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action-text>{{ stats.minersOnline }}</v-list-item-action-text>
+          <v-list-item-action-text>{{
+            stats.minersOnline
+          }}</v-list-item-action-text>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
           <v-list-item-avatar>
@@ -136,7 +154,9 @@
           <v-list-item-content>
             <v-list-item-title>{{ $t('info.pool.fee') }}</v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action-text>{{ stats.env.poolFee }}%</v-list-item-action-text>
+          <v-list-item-action-text
+            >{{ stats.env.poolFee }}%</v-list-item-action-text
+          >
         </v-list-item>
       </v-list>
       <v-list dense class="ma-0 pa-0">
@@ -147,7 +167,9 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ stats.env.network.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{ stats.env.network.algo }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              stats.env.network.algo
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -155,8 +177,12 @@
             <v-icon>mdi-cube-scan</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.network.height') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ nf.format(stats.height) }}</v-list-item-subtitle>
+            <v-list-item-title>{{
+              $t('info.network.height')
+            }}</v-list-item-title>
+            <v-list-item-subtitle>{{
+              nf.format(stats.height)
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -164,8 +190,12 @@
             <v-icon>mdi-lock</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.network.difficulty') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ formatHashrate(stats.difficulty, false) }}</v-list-item-subtitle>
+            <v-list-item-title>{{
+              $t('info.network.difficulty')
+            }}</v-list-item-title>
+            <v-list-item-subtitle>{{
+              formatHashrate(stats.difficulty, false)
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -173,8 +203,12 @@
             <v-icon>mdi-gauge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.network.hashrate') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ formatHashrate(stats.networkHashrate, true) }}</v-list-item-subtitle>
+            <v-list-item-title>{{
+              $t('info.network.hashrate')
+            }}</v-list-item-title>
+            <v-list-item-subtitle>{{
+              formatHashrate(stats.networkHashrate, true)
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="stats-item ma-1">
@@ -182,7 +216,11 @@
             <v-icon>mdi-timer-sand</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('info.network.epoch') }} ({{ stats.env.network.algo }})</v-list-item-title>
+            <v-list-item-title
+              >{{ $t('info.network.epoch') }} ({{
+                stats.env.network.algo
+              }})</v-list-item-title
+            >
             <v-list-item-subtitle>{{ stats.epoch }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -192,11 +230,13 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ $t('info.network.dag') }}</v-list-item-title>
-            <v-list-item-subtitle>{{ stats.dagSize }} MByte</v-list-item-subtitle>
+            <v-list-item-subtitle
+              >{{ stats.dagSize }} MByte</v-list-item-subtitle
+            >
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <template v-slot:append>
+      <template #append>
         <v-list>
           <v-list-item @click.stop="drawerRight = !drawerRight">
             <v-list-item-action>
@@ -214,10 +254,7 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
       <v-spacer />
     </v-footer>
@@ -228,7 +265,7 @@
 import { formatDistance } from 'date-fns'
 
 export default {
-  data () {
+  data() {
     return {
       drawer: true,
       drawerRight: true,
@@ -239,7 +276,7 @@ export default {
       nf: new Intl.NumberFormat(this.locale, {}),
       timer: {
         stats: null,
-        miners: null
+        miners: null,
       },
       interval: {
         stats: 2000,
@@ -265,35 +302,45 @@ export default {
       },
       set() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      }
+      },
     },
     items() {
       return [
         {
           icon: 'mdi-home',
           title: this.$t('menu.home'),
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-cube-outline',
           title: this.$t('menu.blocks'),
-          to: '/blocks'
+          to: '/blocks',
         },
         {
           icon: 'mdi-send',
           title: this.$t('menu.payments'),
-          to: '/payments'
+          to: '/payments',
         },
         {
           icon: 'mdi-help-circle-outline',
           title: this.$t('menu.help'),
-          to: '/help'
-        }
+          to: '/help',
+        },
       ]
     },
     locale() {
       return this.$i18n.locale
-    }
+    },
+  },
+  created() {
+    this.startSync('stats')
+    this.startSync('miners')
+    this.startSync('blocks')
+    this.startSync('payments')
+    const t = this
+    setInterval(function () {
+      t.$store.dispatch('now')
+    }, 1000)
   },
   methods: {
     formatHashrate(bytes, showHash) {
@@ -318,7 +365,7 @@ export default {
       const self = this
       this.timer[store] = null
       this.$store.dispatch(store)
-      this.timer[store] = setInterval(function() {
+      this.timer[store] = setInterval(function () {
         self.$store.dispatch(store)
       }, this.interval[store])
     },
@@ -327,46 +374,36 @@ export default {
       this.timer[store] = null
     },
     formatTimeSince(time) {
-      return formatDistance(new Date(time*1000), this.now, { addSuffix: true, includeSeconds: true })
+      return formatDistance(new Date(time * 1000), this.now, {
+        addSuffix: true,
+        includeSeconds: true,
+      })
     },
   },
-  created() {
-    this.startSync('stats')
-    this.startSync('miners')
-    this.startSync('blocks')
-    this.startSync('payments')
-    const t = this
-    setInterval(function() {
-      t.$store.dispatch('now')
-    }, 1000)
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-  .stats-item {
-    background-color: var(--v-secondary-base) !important;
-    border-bottom-left-radius: 32px !important;
-    border-top-left-radius: 32px !important;
-  }
+.stats-item {
+  background-color: var(--v-secondary-base) !important;
+  border-bottom-left-radius: 32px !important;
+  border-top-left-radius: 32px !important;
+}
 </style>
 
 <style lang="scss">
-  ::-webkit-scrollbar
-  {
-    width: 6px;  /* for vertical scrollbars */
-    height: 6px; /* for horizontal scrollbars */
-    border-radius: 3px;
-  }
+::-webkit-scrollbar {
+  width: 6px; /* for vertical scrollbars */
+  height: 6px; /* for horizontal scrollbars */
+  border-radius: 3px;
+}
 
-  ::-webkit-scrollbar-track
-  {
-    background: var(--v-secondary-base) !important;
-  }
+::-webkit-scrollbar-track {
+  background: var(--v-secondary-base) !important;
+}
 
-  ::-webkit-scrollbar-thumb
-  {
-    background: var(--v-primary-base) !important;
-    border-radius: 3px;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--v-primary-base) !important;
+  border-radius: 3px;
+}
 </style>

@@ -1,7 +1,6 @@
 // import colors from 'vuetify/es5/util/colors'
 import config from './params/config.json'
 
-
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -16,21 +15,16 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: config.description }
+      { hid: 'description', name: 'description', content: config.description },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/' + config.favicon }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/' + config.favicon }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '~/scss/main.scss'
-  ],
+  css: ['~/scss/main.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -52,7 +46,7 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     // https://i18n.nuxtjs.org/
-    'nuxt-i18n'
+    'nuxt-i18n',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -64,7 +58,7 @@ export default {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    theme: config.theme
+    theme: config.theme,
   },
 
   // i18n module configuration (https://i18n.nuxtjs.org/basic-usage)
@@ -72,50 +66,49 @@ export default {
     locales: [
       {
         code: 'en',
-        name: 'English'
+        name: 'English',
       },
       {
         code: 'es',
-        name: 'Español'
+        name: 'Español',
       },
       {
         code: 'ru',
-        name: 'Pусский'
+        name: 'Pусский',
       },
       {
         code: 'zh',
-        name: '中文'
-      }
+        name: '中文',
+      },
     ],
     strategy: 'no_prefix',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'core_pool_i18n_redirected',
-      fallbackLocale: config.i18n.fallback || "en",
+      fallbackLocale: config.i18n.fallback || 'en',
       alwaysRedirect: true,
-      onlyOnRoot: true
+      onlyOnRoot: true,
     },
-    defaultLocale: config.i18n.default || "en",
+    defaultLocale: config.i18n.default || 'en',
     vueI18n: {
-      fallbackLocale: config.i18n.fallback || "en",
+      fallbackLocale: config.i18n.fallback || 'en',
       messages: {
         en: require('./i18n/en.json'),
         es: require('./i18n/es.json'),
         ru: require('./i18n/ru.json'),
-        zh: require('./i18n/zh.json')
-      }
-    }
+        zh: require('./i18n/zh.json'),
+      },
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
+  build: {},
 
   // hooks
   hooks: {
     'content:file:beforeParse': (file) => {
       if (file.extension !== '.md') return
       file.data = file.data.replace(/STRATUM_HOST/g, config.stratum)
-    }
-  }
+    },
+  },
 }

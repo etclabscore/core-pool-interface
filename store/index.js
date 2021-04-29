@@ -25,7 +25,7 @@ export const state = () => ({
     extraPools: config.extraPools,
     mode: config.mode,
   },
-  networks: networks,
+  networks,
   minersOnline: 0,
   poolHashRate: 0,
   lastBlockFound: 0,
@@ -38,7 +38,7 @@ export const state = () => ({
   payments: {},
   epoch: 0,
   dagSize: 0, // in MB
-  now: Date.now() // global now Date for time since calcs
+  now: Date.now(), // global now Date for time since calcs
 })
 
 export const mutations = {
@@ -50,9 +50,9 @@ export const mutations = {
     state.poolFee = info.poolFee | state.poolFee
     state.height = info.height | state.height
     state.difficulty = info.difficulty | state.difficulty
-    state.networkHashrate = state.difficulty / TARGET_TIME,
+    state.networkHashrate = state.difficulty / TARGET_TIME
     state.epoch = Math.trunc(info.height / EPOCH_LENGTH)
-    state.dagSize = 1024 + (8 * state.epoch)
+    state.dagSize = 1024 + 8 * state.epoch
   },
   SET_MINERS(state, miners) {
     state.miners = miners
@@ -65,20 +65,20 @@ export const mutations = {
   },
   SET_NOW(state, now) {
     state.now = now
-  }
+  },
 }
 
 export const actions = {
-  async stats({commit}) {
+  async stats({ commit }) {
     try {
       const { data } = await axios.get(API_URL + '/stats')
-      if ( data ) {
-        let info = {
+      if (data) {
+        const info = {
           minersOnline: data.minersTotal,
           poolHashRate: data.hashrate,
           height: data.nodes[0].height,
           difficulty: data.nodes[0].difficulty,
-          lastBlockFound: data.stats.lastBlockFound
+          lastBlockFound: data.stats.lastBlockFound,
         }
         commit('SET_STATS', info)
       }
@@ -86,37 +86,37 @@ export const actions = {
       consola.error(new Error(error))
     }
   },
-  async miners({commit}) {
+  async miners({ commit }) {
     try {
       const { data } = await axios.get(API_URL + '/miners')
-      if ( data ) {
+      if (data) {
         commit('SET_MINERS', data.miners)
       }
     } catch (error) {
       consola.error(new Error(error))
     }
   },
-  async blocks({commit}) {
+  async blocks({ commit }) {
     try {
       const { data } = await axios.get(API_URL + '/blocks')
-      if ( data ) {
+      if (data) {
         commit('SET_BLOCKS', data)
       }
     } catch (error) {
       consola.error(new Error(error))
     }
   },
-  async payments({commit}) {
+  async payments({ commit }) {
     try {
       const { data } = await axios.get(API_URL + '/payments')
-      if ( data ) {
+      if (data) {
         commit('SET_PAYMENTS', data)
       }
     } catch (error) {
       consola.error(new Error(error))
     }
   },
-  now({commit}) {
+  now({ commit }) {
     commit('SET_NOW', Date.now())
-  } 
+  },
 }

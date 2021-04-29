@@ -14,27 +14,37 @@
       dense
       :headers="headers"
       :items="blocks"
-      :footer-props="{itemsPerPageText: $t('pages.blocks.blocksPerPage'), itemsPerPageOptions: [25, 50, 100]}"
+      :footer-props="{
+        itemsPerPageText: $t('pages.blocks.blocksPerPage'),
+        itemsPerPageOptions: [25, 50, 100],
+      }"
       :items-per-page="25"
       :search="search"
       :no-data-text="noDataText"
     >
-      <template v-slot:item.height="{ item }">
+      <template #[`item.height`]="{ item }">
         {{ nf.format(item.height) }}
       </template>
-      <template v-slot:item.shares="{ item }">
-        {{ nf.format(((item.shares/item.difficulty)*100).toFixed(0)) }}%
+      <template #[`item.shares`]="{ item }">
+        {{ nf.format(((item.shares / item.difficulty) * 100).toFixed(0)) }}%
       </template>
-      <template v-slot:item.uncle="{ item }">
-        <v-chip label small :color="formatBlockType(item).color">{{ formatBlockType(item).text }}</v-chip>
+      <template #[`item.uncle`]="{ item }">
+        <v-chip label small :color="formatBlockType(item).color">{{
+          formatBlockType(item).text
+        }}</v-chip>
       </template>
-      <template v-slot:item.timestamp="{ item }">
-        {{ dtf.format(item.timestamp*1000) }}
+      <template #[`item.timestamp`]="{ item }">
+        {{ dtf.format(item.timestamp * 1000) }}
       </template>
-      <template v-slot:item.hash="{ item }">
-        <explorer-link :hash="item.hash" link-type="block" :clip="8" :config="config" />
+      <template #[`item.hash`]="{ item }">
+        <explorer-link
+          :hash="item.hash"
+          link-type="block"
+          :clip="8"
+          :config="config"
+        />
       </template>
-      <template v-slot:item.reward="{ item }">
+      <template #[`item.reward`]="{ item }">
         {{ formatReward(item.reward).toFixed(6) }}
       </template>
     </v-data-table>
@@ -46,29 +56,29 @@ import ExplorerLink from '~/components/ExplorerLink'
 
 export default {
   components: {
-    ExplorerLink
+    ExplorerLink,
   },
   props: {
     blocks: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     config: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     noDataText: {
       type: String,
       default() {
-        return "No blocks"
-      }
-    }
+        return 'No blocks'
+      },
+    },
   },
-  data () {
+  data() {
     return {
       search: null,
       dtf: new Intl.DateTimeFormat('en', {
@@ -77,9 +87,9 @@ export default {
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
-        second: 'numeric'
+        second: 'numeric',
       }),
-      nf: new Intl.NumberFormat(this.locale, {})
+      nf: new Intl.NumberFormat(this.locale, {}),
     }
   },
   computed: {
@@ -88,36 +98,37 @@ export default {
         {
           text: this.$t('pages.blocks.blockNumber'),
           align: 'start',
-          value: 'height'
+          value: 'height',
         },
         { text: this.$t('pages.blocks.blockHash'), value: 'hash' },
         { text: this.$t('pages.blocks.timeFound'), value: 'timestamp' },
-        { text: this.$t('pages.blocks.variance'), value: 'shares'},
+        { text: this.$t('pages.blocks.variance'), value: 'shares' },
         {
-          text: this.$t('pages.blocks.reward') + ' (' + this.config.symbol + ')',
+          text:
+            this.$t('pages.blocks.reward') + ' (' + this.config.symbol + ')',
           align: 'right',
-          value: 'reward'
+          value: 'reward',
         },
         { text: this.$t('pages.blocks.type'), value: 'uncle', align: 'right' },
       ]
     },
     locale() {
       return this.$i18n.locale
-    }
+    },
   },
   methods: {
     formatBlockType(block) {
       if (!block.uncle && !block.orphan) {
-        return { color:'success', text: this.$t('pages.blocks.block') }
+        return { color: 'success', text: this.$t('pages.blocks.block') }
       } else if (block.uncle) {
-        return { color:'warning', text: this.$t('pages.blocks.uncle') }
+        return { color: 'warning', text: this.$t('pages.blocks.uncle') }
       } else {
-        return { color:'error', text: this.$t('pages.blocks.orphan') }
+        return { color: 'error', text: this.$t('pages.blocks.orphan') }
       }
     },
     formatReward(wei) {
       return wei / 1000000000000000000
-    }
-  }
+    },
+  },
 }
 </script>

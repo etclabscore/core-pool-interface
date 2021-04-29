@@ -3,13 +3,15 @@
     <v-col cols="12" sm="12" md="12">
       <v-row no-gutters class="px-4">
         <v-alert type="info" class="w-100 mb-0">
-          Change the address in the examples below to YOUR address before starting your miner.
+          Change the address in the examples below to YOUR address before
+          starting your miner.
         </v-alert>
       </v-row>
       <v-row no-gutters class="px-4">
         <v-col cols="12" sm="12" md="12">
           <v-card
-            v-for="(miner, index) in miners" :key="index"
+            v-for="(miner, index) in miners"
+            :key="index"
             tile
             class="my-2"
           >
@@ -25,7 +27,10 @@
             </v-card-title>
             <v-card-text class="pa-0">
               <article>
-                <nuxt-content :document="miner" :class="{'code-lightmode': !darkmode}"/>
+                <nuxt-content
+                  :document="miner"
+                  :class="{ 'code-lightmode': !darkmode }"
+                />
               </article>
             </v-card-text>
           </v-card>
@@ -40,10 +45,10 @@
 import config from '~/params/config.json'
 
 export default {
-  async asyncData ({ $content }) { 
+  async asyncData({ $content }) {
     const network = config.network
-    const path_prefix = 'help/miners/' + network
-    let miners = []
+    const pathPrefix = 'help/miners/' + network
+    const miners = []
     const supportsClassic = [
       'lolminer',
       'nanominer',
@@ -51,21 +56,18 @@ export default {
       'nbminer',
       'gminer',
       'teamred',
-      'srbminer'
+      'srbminer',
     ]
-    const supportsMordor = [
-      'lolminer',
-      'gminer'
-    ]
+    const supportsMordor = ['lolminer', 'gminer']
 
     if (network === 'mordor') {
       for (const miner of supportsMordor) {
-        const doc = await $content(path_prefix + '/' + miner).fetch()
+        const doc = await $content(pathPrefix + '/' + miner).fetch()
         miners.push(doc)
       }
     } else {
       for (const miner of supportsClassic) {
-        const doc = await $content(path_prefix + '/' + miner).fetch()
+        const doc = await $content(pathPrefix + '/' + miner).fetch()
         miners.push(doc)
       }
     }
@@ -88,19 +90,20 @@ export default {
     }
 
     return {
-      miners
+      miners,
     }
   },
   computed: {
     darkmode() {
       return this.$vuetify.theme.dark
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-  .v-card__title {
-    background-color: var(--v-secondary-base) !important;
-  }
-</style>>
+.v-card__title {
+  background-color: var(--v-secondary-base) !important;
+}
+</style>
+>
