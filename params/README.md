@@ -6,8 +6,8 @@ Copy ~/params/example.config.json to ~/params/config.json
 
 ```javascript
 {
-  "title": "vue-open-etc-pool",
-  "description": "vue based frontend for open-etc-pool",
+  "title": "core-pool",
+  "description": "vue based frontend for core-pool",
   "logo": "etc.svg",
   "favicon": "favicon.png",
   "url": "http://127.0.0.1:3000",
@@ -15,8 +15,8 @@ Copy ~/params/example.config.json to ~/params/config.json
   "stratum": "127.0.0.1:8008",
   "network": "classic",
   "explorer": {
-    "url": "https://expedition.dev",
-    "type": "expedition"
+    "url": "https://blockscout.com",
+    "type": "blockscout"
   },
   "poolFee": "1",
   "payoutThreshold": "0.5",
@@ -30,7 +30,8 @@ Copy ~/params/example.config.json to ~/params/config.json
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
-        "warning": "#FFC107"
+        "warning": "#FFC107",
+        "borders": "#2E2E2E"
       },
       "light": {
         "primary": "#1976D2",
@@ -39,12 +40,17 @@ Copy ~/params/example.config.json to ~/params/config.json
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
-        "warning": "#FFC107"
+        "warning": "#FFC107",
+        "borders": "#E1E1E1"
       }
     },
     "options": { 
       "customProperties": true 
     }
+  },
+  "i18n": {
+    "default": "en",
+    "fallback": "en"
   },
   "extraPools": []
 }
