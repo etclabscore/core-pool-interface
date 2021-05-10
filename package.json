@@ -19,7 +19,7 @@
     "consola": "^2.15.3",
     "core-js": "^3.11.2",
     "date-fns": "^2.21.1",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.5",
     "nuxt-i18n": "^6.26.0"
   },
   "devDependencies": {
