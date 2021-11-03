@@ -23,7 +23,7 @@
             <tbody>
               <tr v-for="(item, key) in blocks.luck" :key="key">
                 <td>{{ key }}</td>
-                <td>{{ nf.format(item.luck.toFixed(2)) }}%</td>
+                <td>{{ nf.format(item.luck * 100).toFixed(2))%</td>
                 <td>{{ nf.format((item.uncleRate * 100).toFixed(2)) }}%</td>
                 <td>{{ nf.format((item.orphanRate * 100).toFixed(2)) }}%</td>
               </tr>
