@@ -35,7 +35,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
-    "jest": "^26.5.0",
+    "jest": "^28.0.2",
     "prettier": "^2.4.1",
     "vue-jest": "^3.0.4"
   }
